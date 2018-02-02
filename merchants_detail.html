@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>merchants_detail.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+	<link rel="stylesheet" href="common.css" type="text/css"></link>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="common.js"></script>
+	<script type="text/javascript" src="merchants_detail.js"></script>
+  </head>
+  
+  <body>
+  	<div style="position: absolute;left: 30%;top: 10%;width: 40%;height: auto;text-align: center;">
+  		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<label style="display: table-cell;vertical-align: middle;width:25%;">图片:</label>
+			<div style="display: table-cell;vertical-align: middle;width: 75%">
+				<img id='merchants_img' src="images/icon/add.jpg" style="height: 100px;" onclick="headClick()">
+			</div>
+		</div>
+		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<label style="display: table-cell;vertical-align: middle;width:25%;">背景图:</label>
+			<div style="display: table-cell;vertical-align: middle;width: 75%">
+				<img id='merchants_desc_img' src="images/icon/add.jpg" style="height: 100px;" onclick="descImgClick()">
+			</div>
+		</div>
+  		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<label style="display: table-cell;vertical-align: middle;width:25%;">姓名:</label>
+			<div style="display: table-cell;vertical-align: middle;width: 75%">
+				<input id="merchants_name" type='text' style="width: 80%" value="shenjiabo"></input>
+			</div>
+		</div>
+		
+		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<input type="button" value="保存" style='width:60%;height: 50px;margin-top: 100px;' onclick="saveInformation()"/>
+		</div>
+		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<input type="button" value="修改密码" style='width:60%;height: 50px;margin-top: 10px;' onclick="passwordClick()"/>
+		</div>
+		<div class="listHorizontalItem"
+			style="height: 50px;">
+			<input type="button" value="退出" style='width:60%;height: 50px;margin-top: 10px;' onclick="outLogin()"/>
+		</div>		
+	</div>	
+	<div id='opacityDiv' class='opacityDiv'></div>
+  	</div>
+  		<div id='updatePasswordDiv'
+		style="overflow:visible;background-color: #ffffff;display: none;
+		left: 35%;width: 30%;height:auto;top:50px;z-index: 102;position: absolute;">
+		<div
+			style='width: 100%;height:40px;text-align: right;background-color: #efefef'>
+			<img alt="关闭" src="images/icon/close.png"
+				style="margin-right: 1%;height: 100%" onclick="closeDiv()">
+		</div>
+		
+		<div class="listHorizontalItem"
+			style="text-align: center;height: 50px;">
+			<label style="display: table-cell;vertical-align: middle;width:25%;">密码:</label>
+			<div style="display: table-cell;vertical-align: middle;width: 75%">
+				<input id="merchants_password__update1" type='password' style="width: 80%" ></input>
+			</div>
+		</div>
+		
+		<div class="listHorizontalItem"
+			style="text-align: center;height: 50px;">
+			<label style="display: table-cell;vertical-align: middle;width:25%;">确认密码:</label>
+			<div style="display: table-cell;vertical-align: middle;width: 75%">
+				<input id="merchants_password__update2" type='password' style="width: 80%" ></input>
+			</div>
+		</div>
+		
+		<input onclick="updatePassword()" type='button' value="修改"
+			style="border: none;width: 100%;height: 40px;margin-top: 2%;">
+		</input>
+	</div>	
+	
+	<input id="merchants_desc_imgFile" style="display: none" type="file" name="merchants_desc_img">
+  	<input id="merchants_imgFile" style="display: none" type="file" name="merchants_img">
+  </body>
+</html>

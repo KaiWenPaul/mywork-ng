@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>address_management.xhtml</title>
+		<meta http-equiv="keywords" content="enter,your,keywords,here" />
+		<meta http-equiv="description" content="A short description of this page." />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		
+		  <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	
+    <link rel="stylesheet" href="../../common.css" type="text/css"></link>
+	<script type="text/javascript" src="../../js/jquery.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../../common.js"></script>
+	<script type="text/javascript" src="address_management.js"></script>
+	</head>
+	<body>
+		 <div class='listHorizontalItem'
+		style="text-align: right;margin-top: 1%">
+		<label>名称:</label> <input type='text' id='name'></input>
+		<input type='button' value="添加" style='margin-right: 1%;'
+			onclick='addCityClick()'></input>
+	</div>	
+	
+	<div class="listAll" style='margin-top: 1%;border-top: 1px solid;border-top-color:#efefef;'>
+		<div class="listHorizontalItem">
+			<label class="listLabel" >序号</label>
+			<label class="listLabel">ID</label>
+			<label class="listLabel" >城市名称</label>
+			<label class="listLabel" >操作</label>
+		</div>
+	</div>
+	
+	<div id="listAll">
+		
+	</div>
+	
+	<div id='opacityDiv' class='opacityDiv'></div>		
+	<div id='cityDiv' class='alertDiv'>
+		<div class='closeDiv'>
+			<img alt="关闭" src="../../images/icon/close.png" class='closeImg' onclick="closeDiv()">
+		</div>
+		
+		<div  class="allDiv" >
+			<label class='leftLabel'>名称:</label>
+			<div class='rightDiv'>
+				<input id="name_update" type='text' class='rightEditor' ></input>
+			</div>
+		</div>
+		
+		<input id='updateButton' onclick="updateCity()" type='button' value="修改" class='tipButton'/>
+	</div>	
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>questions_answer.html</title>	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=8">
+	
+    <link rel="stylesheet" href="../../common.css" type="text/css"></link>
+	<script type="text/javascript" src="../../js/jquery.js"></script>
+	<script type="text/javascript" src="../../common.js"></script>
+    <script type="text/javascript" src="questions_answer.js"></script>
+  </head>
+  
+  <body >
+  
+  	<div class='listHorizontalItem'
+		style="height:50px;text-align: right;margin-top: 1%">
+		<label class='listLabel' style='width:30%;border: none'></label>
+		<label class='listLabel' style='width:5%;border: none'>答案</label>
+		<div class='listDiv' style="border: none">
+			<input type='text' id='answer_title'></input>
+		</div>
+		<label class='listLabel' style='width:10%;border: none'>是否是正确答案</label>
+		<div class='listDiv' style="border: none">
+			<select id='selectCorrect' style='width: 100%; size: 100%;'>
+				<option >否</option>
+				<option >是</option>
+			</select>
+		</div>
+		<div class='listDiv' style="border: none">
+			<input type='button' value="添加" style='margin-right: 1%;'
+			onclick='addAnswerClick()'></input>
+		</div>
+	</div>
+	
+    <div class="listAll"
+		style='margin-top: 1%;border-top: 1px solid;border-top-color:#efefef;'>
+		<div class="listHorizontalItem">
+			<label class="listLabel" style='width: 5%'>序号</label>
+			<label class="listLabel" style='width: 5%'>ID</label>
+			<label class="listLabel" style='width: 20%'>答案</label>
+			<label class="listLabel" style='width: 5%'>是否是正确答案</label>
+			<label class="listLabel">操作</label>
+		</div>
+	</div>
+
+	<div id="listAll">
+		
+	</div>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<script type="text/javascript" src="src/region_select.js"></script>
+<!--添加地址弹出框-->
+<div class="tck addhide" hidden>
+  <i></i>
+  <div class="address-box" hidden>
+      <div class="fptck-box">
+            <div class="tit">发票信息<span ng-click="tckfphide()">&times;</span></div>
+            <div class="center">
+                <p class="fpzl"><span val="zz" class="act" fptab>纸质发票</span>
+                <span val="zzs" fptab>增值税专票</span></p>
+                <ul class="zz">
+                  <li class="zz-gsordw"><label>发票抬头：</label><span class="act" gsshow>个人</span><span gsshow>单位</span></li>
+                  <li class="gsshow geren"><label>&nbsp;</label><input type="text" placeholder="填写个人发票名称"></li>
+                  <li class="gsshow company" hidden><label>&nbsp;</label><input type="text" placeholder="填写公司名称"></li>
+                  <li class="gsshow code" hidden><label>&nbsp;</label><input type="text" placeholder="请输入纳税人识别码"></li>
+                  <li class="zz-fpcenter"><label>发票内容：</label><p><span ng-repeat="fp in fplxs" ng-class="{act:$index==0}" tabbox>{{fp.invise_desc}}</span></p></li>
+                </ul>
+                <ul class="zzs" hidden>
+                  <li><label>单位名称：</label><input class="zzs-name" type="text" placeholder="请输入单位名称（必填）"></li>
+                  <li><label>纳税人识别码：</label><input class="zzs-sbm" type="text" placeholder="请输入纳税人识别码（必填）"></li>
+                  <li><label>注册地址：</label><input class="zzs-add" type="text" placeholder="请输入注册地址"></li>
+                  <li><label>注册电话：</label><input class="zzs-phone" type="text" placeholder="请输入注册电话"></li>
+                  <li><label>开户银行：</label><input class="zzs-bank" type="text" placeholder="请输入开户银行"></li>
+                  <li><label>银行账户：</label><input class="zzs-bankno" type="text" placeholder="请输入银行账户"></li>
+                </ul>
+                <div>
+                  <ul>
+                    <li><label>&nbsp;</label><button ng-click="keepfpxx(0)">保存</button><button class="tck-hide" ng-click="tckfphide()">取消</button></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+  </div>
+</div>
+<!--编辑发票列表-->
+<div class="tck edithide" hidden>
+  <i></i>
+  <div class="address-box-edit" hidden>
+     <!--<div class="tit">编辑收货地址<span>&times;</span></div>-->
+      <div class="fptck-box">
+            <div class="tit">发票信息<span  ng-click="tckfphide()">&times;</span></div>
+            <div class="center">
+                <p class="fpzl"><span val="zz" class="act" fptab>纸质发票</span>
+                <span val="zzs" fptab>增值税专票</span></p>
+                <ul class="zz">
+                  <li class="zz-gsordw"><label>发票抬头：</label><span class="act" gsshow>个人</span><span gsshow>单位</span></li>
+                  <li class="gsshow geren"><label>&nbsp;</label><input ng-model="zz_personal_name" type="text" placeholder="填写个人发票名称"></li>
+                  <li class="gsshow company" hidden><label>&nbsp;</label><input ng-model="zz_company_name" type="text" placeholder="填写公司名称"></li>
+                  <li class="gsshow code" hidden><label>&nbsp;</label><input ng-model="zz_code" type="text" placeholder="请输入纳税人识别码"></li>
+                  <li class="zz-fpcenter"><label>发票内容：</label><p><span ng-repeat="fp in fplxs" ng-class="{act:fp.is_delete==1}" tabbox>{{fp.invise_desc}}</span></p></li>
+                </ul>
+                <ul class="zzs" hidden>
+                  <li><label>单位名称：</label><input ng-model="zzs_company_name" class="zzs-name" type="text" placeholder="请输入单位名称（必填）"></li>
+                  <li><label>纳税人识别码：</label><input ng-model="zzs_code" class="zzs-sbm" type="text" placeholder="请输入纳税人识别码（必填）"></li>
+                  <li><label>注册地址：</label><input ng-model="fpmodel.invise_register_address"class="zzs-add" type="text" placeholder="请输入注册地址"></li>
+                  <li><label>注册电话：</label><input ng-model="fpmodel.invise_register_phone"  class="zzs-phone" type="text" placeholder="请输入注册电话"></li>
+                  <li><label>开户银行：</label><input ng-model="fpmodel.invise_bank_name" class="zzs-bank" type="text" placeholder="请输入开户银行"></li>
+                  <li><label>银行账户：</label><input ng-model="fpmodel.invise_bank_code" class="zzs-bankno" type="text" placeholder="请输入银行账户"></li>
+                </ul>
+                <div>
+                  <ul>
+                    <li><label>&nbsp;</label><button ng-click="keepfpxx(fpmodel.invoice_id)">保存</button><button class="tck-hide" ng-click="tckfphide()">取消</button></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+  </div>
+</div>
+<!--header end-->
+<div class="mainbox bg-f5 clearfix pad-b70 pad-t40">
+  <div class="box">
+     <div class="main-leftbox nav2">
+        <ul>
+          <li class="act1">设置</li>
+          <li><a href="#grzl">个人资料</a></li>
+          <li><a href="#aqsz">安全设置</a></li>
+          <li><a href="#shdz">收货地址</a></li>
+          <li class="act"><a href="#fp">发票管理</a></li>
+          <li><a href="#wdrz">我的认证</a></li>
+          <li><a href="#xyrz">信用申请</a></li>
+        </ul>
+     </div>
+     <div class="main-rightbox wdddbox">
+       <div class="shdz-box bg-fff">
+         <div class="tit"><span ng-click="addshow()">新增发票信息</span>你已经创建{{fplength}}个发票信息，最多可创建6个</div>
+         <div class="shdz-list" ng-repeat="fp in fplists">
+            <span ng-if="fp.invoice_type!='no'" ng-click="defp(fp.invoice_id)">&times;</span>
+            <ul ng-if="fp.invoice_type=='no'">
+              <li><label>发票类型：</label>不开发票</li>
+              <li style="margin-bottom:50px;"><a href="javascript:;" style="margin-right:35px;" ng-class="{act:fp.is_default==1}" ng-click="setDefault(fp.invoice_id)">默认发票</a></li>
+            </ul>
+            <ul ng-if="fp.invoice_type=='paper'">
+              <li><label>发票类型：</label>纸质发票</li>
+              <li><label>发票抬头：</label><span ng-if="fp.invoice_rise_type=='personal'">个人</span><span ng-if="fp.invoice_rise_type=='company'">单位</span></li>
+              <li><label>发票名称：</label>{{fp.invoice_company_name}}</li>
+              <li ng-if="fp.invoice_rise_type=='company'"><label>纳税人识别码：</label>{{fp.invise_taxpayer_code}}</li>
+              <li><label>发票内容：</label>{{fp.invoice_content}}<a href="javascript:;" ng-click="editshow(fp.invoice_id)">编辑</a><a href="javascript:;" ng-class="{act:fp.is_default==1}" ng-click="setDefault(fp.invoice_id)">默认发票</a></li>
+            </ul>
+            <ul ng-if="fp.invoice_type=='increment'">
+              <li><label>发票类型：</label>增值税发票</li>
+              <li><label>单位名称：</label>{{fp.invoice_company_name}}</li>
+              <li><label>纳税人识别码：</label>{{fp.invise_taxpayer_code}}</li>
+              <li><label>注册地址：</label>{{fp.invise_register_address}}</li>
+              <li><label>注册电话：</label>{{fp.invise_register_phone}}</li>
+              <li><label>开户银行：</label>{{fp.invise_bank_name}}</li>
+              <li><label>银行账户：</label>{{fp.invise_bank_code}}<a href="javascript:;" ng-click="editshow(fp.invoice_id)">编辑</a><a href="javascript:;" ng-class="{act:fp.is_default==1}" ng-click="setDefault(fp.invoice_id)">默认发票</a></li>
+            </ul>
+         </div>
+       </div>
+     </div>
+     <!--main-rightbox end-->
+  </div>
+</div>
+
+<script>
+$(".address-box>.fptck-box>.tit span,.tck>i").click(function(){
+  $(".tck.addhide").hide();
+  $(".address-box").hide();
+  // window.location.reload();
+})
+</script>

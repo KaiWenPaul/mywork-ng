@@ -1,0 +1,335 @@
+<script type="text/javascript" src="src/region_select.js"></script>
+<!--添加发票列表-->
+<div class="fpadd" hidden>
+  <i></i>
+  <div class="fp-box">
+      <div class="fptck-box">
+            <div class="tit">发票信息<span ng-click="tckfphide()">&times;</span></div>
+            <div class="center">
+                <p class="fpzl"><span val="zz" class="act" fptab>纸质发票</span>
+                <span val="zzs" fptab>增值税专票</span></p>
+                <ul class="zz">
+                  <li class="zz-gsordw"><label>发票抬头：</label><span class="act" gsshow>个人</span><span gsshow>单位</span></li>
+                  <li class="gsshow geren"><label>&nbsp;</label><input type="text" placeholder="填写个人发票名称"></li>
+                  <li class="gsshow company" hidden><label>&nbsp;</label><input type="text" placeholder="填写公司名称"></li>
+                  <li class="gsshow code" hidden><label>&nbsp;</label><input type="text" placeholder="请输入纳税人识别码"></li>
+                  <li class="zz-fpcenter"><label>发票内容：</label><p><span ng-repeat="fp in fplxs" ng-class="{act:$index==0}" tabbox>{{fp.invise_desc}}</span></p></li>
+                </ul>
+                <ul class="zzs" hidden>
+                  <li><label>单位名称：</label><input class="zzs-name" type="text" placeholder="请输入单位名称（必填）"></li>
+                  <li><label>纳税人识别码：</label><input class="zzs-sbm" type="text" placeholder="请输入纳税人识别码（必填）"></li>
+                  <li><label>注册地址：</label><input class="zzs-add" type="text" placeholder="请输入注册地址"></li>
+                  <li><label>注册电话：</label><input class="zzs-phone" type="text" placeholder="请输入注册电话"></li>
+                  <li><label>开户银行：</label><input class="zzs-bank" type="text" placeholder="请输入开户银行"></li>
+                  <li><label>银行账户：</label><input class="zzs-bankno" type="text" placeholder="请输入银行账户"></li>
+                </ul>
+                <div>
+                  <ul>
+                    <li><label>&nbsp;</label><button ng-click="keepfp(0)">保存</button><button class="tck-hide" ng-click="tckfphide()">取消</button></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+<!--编辑发票列表-->
+<div class="tck edithide" hidden>
+  <i></i>
+  <div class="address-box-edit" hidden>
+      <div class="fptck-box">
+            <div class="tit">发票信息<span  ng-click="tckfphide()">&times;</span></div>
+            <div class="center">
+                <p class="fpzl"><span val="zz" class="act" fptab>纸质发票</span>
+                <span val="zzs" fptab>增值税专票</span></p>
+                <ul class="zz">
+                  <li class="zz-gsordw"><label>发票抬头：</label><span class="act" gsshow>个人</span><span gsshow>单位</span></li>
+                  <li class="gsshow geren"><label>&nbsp;</label><input ng-model="zz_personal_name" type="text" placeholder="填写个人发票名称"></li>
+                  <li class="gsshow company" hidden><label>&nbsp;</label><input ng-model="zz_company_name" type="text" placeholder="填写公司名称"></li>
+                  <li class="gsshow code" hidden><label>&nbsp;</label><input ng-model="zz_code" type="text" placeholder="请输入纳税人识别码"></li>
+                  <li class="zz-fpcenter"><label>发票内容：</label><p><span ng-repeat="fp in fplxs" ng-class="{act:fp.is_delete==1}" tabbox>{{fp.invise_desc}}</span></p></li>
+                </ul>
+                <ul class="zzs" hidden>
+                  <li><label>单位名称：</label><input ng-model="zzs_company_name" class="zzs-name" type="text" placeholder="请输入单位名称（必填）"></li>
+                  <li><label>纳税人识别码：</label><input ng-model="zzs_code" class="zzs-sbm" type="text" placeholder="请输入纳税人识别码（必填）"></li>
+                  <li><label>注册地址：</label><input ng-model="fpmodel.invise_register_address"class="zzs-add" type="text" placeholder="请输入注册地址"></li>
+                  <li><label>注册电话：</label><input ng-model="fpmodel.invise_register_phone"  class="zzs-phone" type="text" placeholder="请输入注册电话"></li>
+                  <li><label>开户银行：</label><input ng-model="fpmodel.invise_bank_name" class="zzs-bank" type="text" placeholder="请输入开户银行"></li>
+                  <li><label>银行账户：</label><input ng-model="fpmodel.invise_bank_code" class="zzs-bankno" type="text" placeholder="请输入银行账户"></li>
+                </ul>
+                <div>
+                  <ul>
+                    <li><label>&nbsp;</label><button ng-click="keepfp(fpmodel.invoice_id)">保存</button><button class="tck-hide" ng-click="tckfphide()">取消</button></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+
+<!--添加地址弹出框-->
+<div class="tck addhide" hidden>
+  <i></i>
+  <div class="address-box" hidden>
+     <div class="tit">编辑收货地址<span>&times;</span></div>
+     <div class="center">
+        <ul>
+          <li><label>*收货人</label><input ng-model="bjadd.name" id="name" type="text" /></li>
+          <li><label>*省市区</label><div class="zt-c-div1">
+              <span>{{morenadds?morenadds:'省市区'}}</span>
+              <div class="zt-c-d-center">
+                <p class="tit2"><span ng-click="seladd(1)" ng-class="{act:selCity==1}" tab>选择省</span><span ng-class="{act:selCity==2}">选择市</span><span ng-class="{act:selCity==3}">选择区</span></p>
+                <ul>
+                  <li ng-repeat="adds in seladds" ng-class="{act:(selCity==1&&$index==selAdd_p)}" tab><span ng-click="seladd((selCity*1+1*1),$index,selAdd_p,adds.id)" title="{{adds.name}}">{{adds.name}}</span></li>
+                </ul>
+              </div>
+            </div></li>
+          <!-- <li><label>*省市区</label><div class="add">
+                <select name="location_p" id="location_p">
+                </select>
+                <select name="location_c" id="location_c">
+                </select>
+                <select name="location_a" id="location_a">
+                </select></div></li> -->
+          <li><label>*详细地址</label><input ng-model="bjadd.detailed_address" type="text" id="add" /></li>
+          <li><label>*手机号码</label><input ng-model="bjadd.mobile" type="text" id="mobile" /></li>
+          <li><label>*邮编</label><input ng-model="bjadd.zip_code" type="text" id="zip_code" /></li>
+          <li><label>&nbsp;</label><span class="red">*为必填</span></li>
+          <li><label>&nbsp;</label><button ng-click="editadd(editaddid)">保存收货信息</button></li>
+        </ul>
+     </div>
+  </div>
+</div>
+<!--自提地点弹出框-->
+<div class="zt-tck" hidden>
+  <i></i>
+  <div class="zttck-box">
+     <div class="tit">编辑自提点<span>&times;</span></div>
+     <div class="center">
+        <ul>
+          <li class="zt-c-of1 clearfix"><label>选择区域：</label>
+            <div class="zt-c-div1 l">
+              <span>{{morenadds}}</span>
+              <div class="zt-c-d-center">
+                <p class="tit2"><span ng-click="seladd(1)" ng-class="{act:selCity==1}" tab>选择省</span><span ng-class="{act:selCity==2}">选择市</span><span ng-class="{act:selCity==3}">选择区</span></p>
+                <ul>
+                  <li ng-repeat="adds in seladds" ng-class="{act:(selCity==1&&$index==selAdd_p)}" tab><span ng-click="seladd((selCity*1+1*1),$index,selAdd_p,adds.id)" title="{{adds.name}}">{{adds.name}}</span></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="zt-c-of2 clearfix"><label>选择自提点：</label>
+            <div class="zt-c-div2">
+              <ul>
+                <li ng-if="ztlists.length==0">暂无自提地点</li>
+                <li ng-repeat="selzt in ztlists"><span sid="{{selzt.since_id}}" class="sel" ng-class="{act:$index==0}" zttab title="{{selzt.since_name}}">{{selzt.since_name}}</span><span class="txt" title="{{selzt.since_address}}">{{selzt.since_address}}</span><a target="_blank" href="gwc/map.html?add={{morenadds+selzt.since_address}}" class="blue">查看地图</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="zt-c-of3"><label>收货人：</label><input id="ztname" ng-value="addlists[0].name" type="text"><span class="mar-l20">手机号：</span><input id="ztmobile" ng-value="addlists[0].mobile" type="text"></li>
+          <li class="zt-c-of4"><label>固定电话：</label><input id="ztgdmobile" type="text"></li>
+          <li class="zt-c-of5"><label>&nbsp;</label><button ng-click="ztbtn()">保存自提点</button><button class="hui mar-l20">取消</button></li>
+        </ul>
+     </div>
+  </div>
+</div>
+<div class="mainbox pad-b100">
+  <div class="qrdd-tit box">填写并确认订单</div>
+  <div class="qrdd-box box">
+    <div class="qrdd-addlist">
+      <p class="tit">收货人信息<a href="javascript:;" ng-click="editshow(0)">新增收货地址></a></p>
+      <ul class="zt-addbox">
+        <li class="act" ng-repeat="add in addlists"><span ng-class="{act:add.is_default==1}" class="zt-span" title="{{add.name}}" ng-click="morenadd(add.address_id)" ztclick>{{add.name}}</span><span class="q-a-s2of6">{{add.province+add.city+add.country+add.detailed_address}}<span class="q-a-s3of6">({{add.mobile}})</span></span><span class="q-a-s4of6" ng-click="deladd(add.address_id)">删除</span><span class="q-a-s5of6" ng-click="editshow(add.address_id)">编辑</span><!-- <span class="act q-a-s6of6" ng-click="morenadd(add.address_id)">{{add.is_default==1?'默认地址':'设为默认地址'}}</span> --></li>
+      </ul>
+      <div class="gd" moreadd>更多<span></span></div>
+    </div>
+    <!--暂时隐藏自提点功能-->
+    <!--<div class="zt-addbox">
+      <p class="tit">选择自提点</p>
+      <ul>
+        <li><span class="zt-span" id="ztshow" ztclick>自提点</span><span class="q-a-s2of6">{{morenzt}}</span><a href="javascript:;" ng-click="ssq_add()">更换自提点</a></li>
+      </ul>
+    </div>-->
+    <div class="qrdd-shoplistbox">
+      <p class="tit mar-t40">订单商品信息</p>
+      <div class="qrdd-tit2">
+       <ul>
+         <li>商品</li>
+         <li>单价</li>
+         <li>数量</li>
+         <li style="width:160px;">优惠</li>
+         <li style="width:185px;">小计</li>
+         <!--<li>运费</li>-->
+       </ul>
+      </div>
+      <div class="qrdd-dp-box table qrdd-dp-box{{mlist.merchants_id}}" ng-repeat="mlist in qrddshoplist">
+        <!--<div class="fptck fptck{{mlist.merchants_id}}" hidden>
+          <i ng-click="tckfphide(mlist.merchants_id)"></i>
+          <div class="fptck-box">
+            <div class="tit">发票信息<span ng-click="tckfphide(mlist.merchants_id)">&times;</span></div>
+            <div class="center">
+                <p class="fpzl"><span val="bk" class="act" fptab>不开发票</span><span val="zz"  fptab>纸质发票</span>
+                <span val="zzs" fptab>增值税专票</span></p>
+                <ul class="bk" hidden></ul>
+                <ul class="zz" hidden>
+                  <li class="zz-gsordw"><label>发票抬头：</label><span class="act" gsshow>个人</span><span gsshow>单位</span></li>
+                  <li class="gsshow geren"><label>&nbsp;</label><input type="text" placeholder="填写个人发票名称"></li>
+                  <li class="gsshow company" hidden><label>&nbsp;</label><input type="text" placeholder="填写公司名称"></li>
+                  <li class="gsshow code" hidden><label>&nbsp;</label><input type="text" placeholder="请输入纳税人识别码"></li>
+                  <li class="zz-fpcenter"><label>发票内容：</label><p><span ng-repeat="fp in fplxs" ng-class="{act:$index==0}" tabbox>{{fp.invise_desc}}</span></p></li>
+                </ul>
+               
+                <ul class="zzs" hidden>
+                  <li><label>单位名称：</label><input class="zzs-name" type="text" placeholder="请输入单位名称（必填）"></li>
+                  <li><label>纳税人识别码：</label><input class="zzs-sbm" type="text" placeholder="请输入纳税人识别码（必填）"></li>
+                  <li><label>注册地址：</label><input class="zzs-add" type="text" placeholder="请输入注册地址"></li>
+                  <li><label>注册电话：</label><input class="zzs-phone" type="text" placeholder="请输入注册电话"></li>
+                  <li><label>开户银行：</label><input class="zzs-bank" type="text" placeholder="请输入开户银行"></li>
+                  <li><label>银行账户：</label><input class="zzs-bankno" type="text" placeholder="请输入银行账户"></li>
+                </ul>
+                <div>
+                  <ul>
+                    <li><label>&nbsp;</label><button ng-click="keepfpxx(mlist.merchants_id)">保存</button><button class="tck-hide" ng-click="tckfphide(mlist.merchants_id)">取消</button></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>-->
+        <div class="qrdd-dp-tit">
+           <span></span>{{mlist.merchantsBean.merchants_name}}
+        </div>
+        <table cellpadding="0" cellspacing="0">
+          <tr ng-repeat="slist in mlist.shoppingCarBeans">
+            <td class="td2"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}"><i><img ng-src="{{slist.goodsBean.goods_img}}" /></i></a></td>
+            <td class="td3"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}">{{slist.goodsBean.goods_name}}</a></td>
+            <td class="td4 red" style="width:160px;">￥<span class="red">{{slist.car_total_pc_price | number:2}}</span></td>
+            <td class="td5" style="width:140px;">ｘ{{slist.goods_num}}</td>
+            <td class="td6" style="width:180px;">{{slist.activityBean}}</td>
+            <td class="td7 red" style="width:150px;padding:60px 15px;">￥{{slist.total_pc_price | number:2}}</td>
+          </tr>
+        </table>
+        <div class="clearfix" style="background:#F9FCFF">
+          <div class="freight_box">
+            <div class="freight"><span style="font-size:14px;color:#333;padding-left:30px;">运费</span><span style="color:#FF0000;margin-left:30px;margin-right:3px;" ng-if="mlist.logisticParameterBeans!=''">*</span><span ng-if="mlist.logisticParameterBeans!=''" style="color:#666;font-size:12px;">低温运输产生辅助材料费用</span></div>
+            <div class="freight_price">￥<span style="color:#FF0000" class="price">{{mlist.express_price |number:2}}</span></div>
+          </div>
+          <div class="freight_way" ng-if="mlist.logisticParameterBeans!=''">
+                <div class="sel_left" style="float:left;width:35%">
+                  <span style="float:left;padding-left:30px;">{{mlist.logisticParameterBeans[0].parameter_name}}：</span>
+                  <ul style="float:left;">
+                    <li ng-repeat="waysort in mlist.logisticParameterBeans[0].goodsParameterBeans"><span ng-class="{act:waysort.is_select==1}"  ng-click="selleft($event,waysort.parameter_id,'a')"></span>{{waysort.parameter_name}}</li>
+                  </ul>
+                </div>
+                <div class="sel_right" style="float:left;width:55%">
+                  <span style="float:left;padding-left:30px;">{{mlist.logisticParameterBeans[1].parameter_name}}：</span>
+                  <ul style="float:left;">
+                    <li ng-repeat="waysort in mlist.logisticParameterBeans[1].goodsParameterBeans"><span ng-class="{act:waysort.is_select==1}"  ng-click="selleft($event,waysort.parameter_id,'b')"></span>{{waysort.parameter_name}}</li>
+                  </ul>
+                </div>
+          </div>
+          <div class="liuyan">
+            <span style="position:relative;top:-85px;padding-left:30px;">买家留言</span>
+             <textarea rows="2" cols="50" maxlength="200" placeholder="给卖方留言，方便达成一致要求(200字以内)"></textarea>
+          </div>
+        </div>
+        <!--<div class="qrdd-other clearfix">
+          <div class="qrdd-message">
+            <ul>
+              <li>给卖家留言</li>
+              <li><textarea rows="2" cols="50" style="resize:none;outline:none;" maxlength="200" placeholder="给卖方留言，方便达成一致要求(200字以内)"></textarea></li>
+            </ul>
+          </div>
+          <div class="qrdd-paymode">
+            <ul>
+              <li>&nbsp;
+              </li>
+              <li>发票信息：<span class="txt">不开发票</span><span class="green" ng-click="tckfp(mlist.merchants_id)">修改</span><span style="float:right;padding-right:130px;">运费：{{mlist.express_price}}</span></li>
+            </ul>
+          </div>
+        </div>-->
+      </div>
+      <!--发票-->
+      
+      <div class="qrdd-addlist1">
+        <p class="tit">发票信息</p>
+        <ul class=" zt-addbox1">
+          <li class="act" ng-repeat="add in fplists">
+            <span ng-if="add.invoice_type=='paper'||add.invoice_type=='increment'" ng-class="{act:add.is_default==1}" class="zt-span1" title="{{add.invoice_company_name}}" ng-click="setDefault(add.invoice_id)" fpclick>{{add.invoice_company_name}}</span>
+            <span ng-if="add.invoice_type=='no'" ng-class="{act:add.is_default==1}" class="zt-span1" title="{{add.invoice_company_name}}" ng-click="setDefault(add.invoice_id)" fpclick>不开发票</span>
+           <!--不开发票-->
+            <span class="q-a-s2of6" ng-if="add.invoice_type=='no'">不开发票
+                <!--<span class="q-a-s3of6">&nbsp;({{add.invoice_content}})</span>-->
+            </span>
+           <!--纸质发票个人--> 
+            <span class="q-a-s2of6" ng-if="add.invoice_type=='paper'&&add.invoice_rise_type=='personal'">纸质发票 &nbsp;个人
+              <span class="q-a-s3of6">&nbsp;({{add.invoice_content}})</span>
+            </span>
+            <!--纸质发票公司-->
+            <span class="q-a-s2of6" ng-if="add.invoice_type=='paper'&&add.invoice_rise_type=='company'">纸质发票 &nbsp;单位 &nbsp;{{add.invise_taxpayer_code}}
+              <span class="q-a-s3of6">&nbsp;({{add.invoice_content}})</span>
+            </span>
+             <!--增值税发票-->
+            <span class="q-a-s2of6" ng-if="add.invoice_type=='increment'">增值税发票 &nbsp;{{add.invise_taxpayer_code}}
+              <!--<span class="q-a-s3of6">({{add.invoice_content}})</span>-->
+            </span>
+            <span class="q-a-s3of6" ng-click="addshow()" ng-if="add.invoice_type!='no'">新增</span><span class="q-a-s4of6" style="margin-right:50px;" ng-click="defp(add.invoice_id)" ng-if="add.invoice_type!='no'">删除</span><span class="q-a-s5of6" ng-click="editshowfp(add.invoice_id)" ng-if="add.invoice_type!='no'">编辑</span>
+            
+          </li>
+        </ul>
+        <div class="gd" moreadd>更多<span></span></div>
+      </div>
+      <!--<div class="paymode" style="height:40px;width:100%;line-height:40px;background:#F9FCFF">      
+        <span style="padding-left:30px;padding-right:150px;">发票信息：</span><span class="txt" style="padding-right:150px;">不开发票</span><span class="green"style="color:#4396EA" ng-click="tckfp(mlist.merchants_id)">修改</span>     
+      </div>-->
+      
+      <!--优惠券-->
+      <div class="qrdd-yhq-select clearfix" ng-if="yhqlists.length>0">
+        <div class="tit clearfix" yhqshow><h3>使用优惠</h3><i></i><span></span></div>
+        <div class="q-y-list-box clearfix" ng-if="yhqlists.length>0" hidden>
+          <div class="tit">可使用优惠券</div>
+          <div class="q-y-list" ng-click="yhqpay($index)" ng-repeat="yhq in yhqlists track by $index" title="{{yhq.get_way=='system'?'满足条件即可使用':'限在'+yhq.merchants_name+'使用'}}" yhqtab>
+            <ul>
+                <li><span>￥{{yhq.coupon_price}}</span>满{{yhq.coupon_full_price}}</li>
+                <li>有效期：{{yhq.end_time | limitTo:10}}</li>
+              </ul>
+              <p>[{{yhq.coupon_way=='system'?'平台':'店铺'}}优惠券]</p>
+          </div>
+        </div>
+      </div>
+      <!--是否积分-->
+      <div class="qrdd-jf-select">
+        <ul>
+          <li class="jf" ng-if="grxx_centers.integral>0">
+            <span class="select" ng-click="jfpay()" dbclick></span>总共{{grxx_centers.integral}}积分，使用{{grxx_centers.integral/100>totalAmount*1+freight*1-yhqpays*1?chengCl(jianCl(addCl(totalAmount,freight),yhqpays),100):grxx_centers.integral}}积分抵扣￥{{grxx_centers.integral/100>totalAmount*1+freight*1-yhqpays*1?chengCl(jianCl(addCl(totalAmount,freight),yhqpays),jfbl.percent_value):chuCl(chengCl(grxx_centers.integral,jfbl.percent_value),100)}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="qrdd-btnbox box clearfix">
+    <div class="qrdd-money">
+      <ul>
+        <li class="act">总额：<span>￥{{totalAmount*1 | number:2}}</span></li>
+        <li class="yunfei">运费：<span>￥{{freight | number:2}}</span></li>
+        <li>优惠券：<span>-￥{{yhqpays | number:2}}</span></li>
+        <li>积分抵扣：<span>-￥{{jfpays | number:2}}</span></li>
+        <li class="act">应付总额：<span class="red">￥{{totalAmount*1-jfpays*1-yhqpays*1+1*freight>=0?(totalAmount*1>100000?(totalAmount*1-jfpays*1-yhqpays*1):(totalAmount*1-jfpays*1-yhqpays*1+1*freight)):0 | number:2}}</span></li>
+        <li  ng-repeat="add in addlists" ng-if="$index==0">寄送至：{{add.province+add.city+add.country+add.detailed_address}}</li>
+      </ul>
+    </div>
+    <button class="qrdd-btn" ng-click="tjdd()">提交订单</button>
+  </div>
+</div>
+
+
+
+<script>
+$(".address-box>.tit span,.tck>i").click(function(){
+  $(".tck.addhide").hide();
+  $(".address-box").hide();
+})
+$(".zttck-box>.tit span,.zt-tck>i,.zt-tck .hui").click(function(){
+  $(".zt-tck").hide();
+})
+</script>

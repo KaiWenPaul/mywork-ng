@@ -1,0 +1,69 @@
+<link rel="stylesheet" type="text/css" href="../src/banklist.css?v=2" />
+<script>
+   var _banklist=[
+    {"name": "工商银行","as": "icbc"},{"name": "建设银行","as": "ccb"},{"name": "招商银行","as": "cmb"},
+    {"name": "农业银行","as": "abc"},{"name": "交通银行","as": "bcom"},{"name": "广发银行","as": "gdb"},
+    {"name": "中国银行","as": "boc"},{"name": "中国民生银行","as": "cmbc"},{"name": "华夏银行","as": "hxb"},
+    {"name": "兴业银行","as": "cib"},{"name": "中国光大银行","as": "ceb"},{"name": "邮政储蓄","as": "post"},
+    {"name": "中信银行","as": "citic"},{"name": "上海银行","as": "shb"},{"name": "浦发银行","as": "spdb"},
+    {"name": "北京银行","as": "bob"},{"name": "渤海银行","as": "cbhb"},{"name": "平安银行","as": "pab"},
+    {"name": "南京银行","as": "njcb"},{"name": "杭州银行","as": "hzb"},{"name": "上海农商行","as": "srcb"},
+    {"name": "温州银行","as": "wzcb"},{"name": "江苏银行","as": "jsb"},{"name": "成都银行","as": "bocd"},
+    {"name": "重庆农村商业银行","as": "cqrcb"},{"name": "江苏省农村信用社联合社","as": "jsnx"},
+    {"name": "陕西省农村信用社联合社","as": "shxnx"},{"name": "天津滨海农村商业银行","as": "bhrcb"},
+    {"name": "河北省农村信用社","as": "hbnx"},{"name": "甘肃省农村信用社","as": "gsnx"},
+    {"name": "厦门银行","as": "boxm"},{"name": "龙江银行","as": "bolj"},{"name": "广东南粤银行","as": "gdnyb"},
+    {"name": "晋中银行","as": "jzcb"},{"name": "长安银行","as": "chab"},{"name": "大连银行","as": "bodl"},
+    {"name": "湖北银行","as": "hbcl"},{"name": "鄂尔多斯银行","as": "ordos"},{"name": "辽宁农村信用社","as": "lnnx"},
+    {"name": "攀枝花市商业银行","as": "pzhccb"},{"name": "重庆银行","as": "cqyh"},{"name": "徽商银行","as": "hsb"},
+    {"name": "汉口银行","as": "hkb"},{"name": "南京银行","as": "njcb"},{"name": "天津银行","as": "tjyh"},
+    {"name": "江苏银行","as": "jsyh"},{"name": "长沙银行","as": "csyh"},{"name": "福建银行","as": "fjyh"},
+    {"name": "湖北银行","as": "hbyh"}]
+    var _banklist2=[{"name": "工商银行","as": "icbc"},{"name": "建设银行","as": "ccb"},{"name": "招商银行","as": "cmb"},
+    {"name": "农业银行","as": "abc"},{"name": "交通银行","as": "bcom"},{"name": "广发银行","as": "gdb"},{"name": "中国银行","as": "boc"},
+    {"name": "中国民生银行","as": "cmbc"},{"name": "华夏银行","as": "hxb"},{"name": "兴业银行","as": "cib"},{"name": "中国光大银行","as": "ceb"},
+    {"name": "邮政储蓄","as": "post"},{"name": "中信银行","as": "citic"},{"name": "上海银行","as": "shb"},{"name": "浦发银行","as": "spdb"},
+    {"name": "北京银行","as": "bob"},{"name": "渤海银行","as": "cbhb"},{"name": "平安银行","as": "pab"},{"name": "南京银行","as": "njcb"},
+    {"name": "杭州银行","as": "hzb"}]
+</script>
+<div class="mainbox pad-b100 bg-f5">
+  <div class="box">
+    <div class="addbank-tit">
+      <img src="images/yinlian.png">
+      <span>正在绑定快捷银行卡</span>
+    </div>
+    <div class="addbank-inp bg-fff">
+      <ul>
+        <li class="clearfix">
+          <label>选择银行：</label>
+          <div class="sel-bankbox">
+            <span ng-click="banklistshow(banklistshows)" title="{{bank_names}}"><span class="bank-logo" id="bank-{{bank_pinyin}}"></span><b ng-if="selbank!=0">{{selbank==1?"储蓄卡":"信用卡"}}</b></span>
+            <div class="bank-list" ng-if="banklistshows==1">
+              <p class="tit"><span class="act" banktab>储蓄卡</span><span banktab>信用卡</span></p>
+              <ul class="clearfix">
+                <li ng-click="clickbank(b.name,1,b.as)" ng-repeat="b in banklists"><span class="bank-logo" id="bank-{{b.as}}" title="{{b.name}}"></span></li>
+              </ul>
+              <ul class="clearfix" hidden>
+                <li ng-click="clickbank(b2.name,2,b2.as)" ng-repeat="b2 in banklists2"><span class="bank-logo" id="bank-{{b2.as}}" title="{{b2.name}}"></span></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><label>银行卡号：</label><input ng-model="bank_code" type="text"></li>
+        <li><label>开户行：</label><input ng-model="bank_khh" type="text"></li>
+        <li><label>持卡人姓名：</label><input ng-model="bank_name" type="text"></li>
+        <li><label>手机号：</label><input ng-model="bank_phone" type="text"></li>
+        <!-- <li><label>短信验证码：</label><input style="width:170px" type="password"><input type="button" value="获取验证码"></li>
+        <li><label>&nbsp;</label>*开通快捷支付后，下次可凭手机验证码快速支付</li>-->
+        <li><label>&nbsp;</label><button ng-click="addbanks(bank_code,bank_name,bank_khh,bank_phone)">同意协议并提交</button></li>
+        <li><label>&nbsp;</label><a href="core.html#rule?act=3&tit=银联快捷支付规则" class="hui">《银联快捷支付规则》</a><a href="core.html#rule?act=5&tit=身份信息保密承诺" class="hui">《身份信息保密承诺》</a></li>
+        <!-- <li><label>&nbsp;</label><a href="javascript:;" class="blue">选择其他支付方式</a></li> -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+

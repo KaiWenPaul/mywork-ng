@@ -1,0 +1,74 @@
+<div class="mainbox clearfix bg-f5 pad-b70">
+  <!--面包屑-->
+  <div class="mbx-navbox">
+    <div class="mbx-nav">
+      <div class="mbx-nav-l"><a href="#/">首页</a><a href="javascript:;">排行榜</a></div>
+    </div>
+  </div>
+  <!---->
+  <div class="box fenlei2 clearfix">
+    <ul>
+      <li><label>榜单</label>
+        <p><span><a href="#/hotshop">热卖榜</a></span><span><a href="#/hotdp">人气店铺</a></span><span><a href="#/hotjj">降价榜</a></span>
+          <span
+            class="act"><a href="#/hotzk">折扣榜</a></span><span><a href="#/hothd">热门活动榜</a></span></p>
+      </li>
+      <li><label>分类</label>
+        <p><span class="act" ng-click="hotzk('',1)" tab>全部</span><span ng-click="hotzk(hzk.goods_uuid,1)" ng-repeat="hzk in hotzksort"
+            tab>{{hzk.goods_name}}</span></p>
+      </li>
+    </ul>
+  </div>
+  <div class="box loading-box">
+    <div class="loading" ng-if="loading==1||loading==2">
+      <div class="loader">
+        <div class="loader-inner line-spin-fade-loader">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <span ng-if="loading==1">加载中...</span>
+      <span ng-if="loading==2" class="red">请求超时...</span>
+    </div>
+  </div>
+  <div class="cnxh-listbox mar-t40 clearfix bangdan-hot">
+    <div class="sj-r-list" ng-class="{act:nowpageNum==1}" ng-repeat="shop in hotzks">
+
+      <!--改动2017-7-05 by Paul-->
+      <a style="width:230px;height:350px;position:absolute;top:0px;left:0px;" target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}"></a>
+      <ul>
+        <li class="sj-l-1of5"><img lazy-src="{{shop.goods_img!=''?shop.goods_img:'images/zw1.png'}}" onerror="this.src='images/zw1.png'" /></li>
+        <li class="sj-l-3of5">{{shop.goods_name}}</li>
+        <li class="sj-l-4of5"><span ng-if="shop.brand_name!=''" style="vertical-align:middle;min-width:40px;margin-right:3px;">{{shop.brand_name}}</span>
+          <span
+            style="vertical-align:middle;width:36px;font-size:10px;padding:0px;margin-right:0px;" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">货号：</span><span style="vertical-align:middle;font-size:10px;width:64px;margin-right:0px;padding:0px;" class="huo"
+              ng-if="shop.show_sku!=null&&shop.show_sku=='1'">{{shop.goods_sku}}</span></li>
+        <li class="sj-l-4of5" style="margin-top:8px;"><span style="font-size:10px;color:#fff;background:#EA2922;line-height:16px;border-radius:2px;height:16px;margin-left:2px;"
+            ng-if="shop.merchants_id == '1'">自营</span><span class="hui" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">惠</span>
+          <span
+            class="zhe" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">{{shop.tips_name}}</span>
+        </li>
+        <li class="sj-l-2of5" style="margin-top:3px;"><span ng-if="shop.is_ask_price=='1'"><img src="./images/askPrice1.png" alt="" style="width:45%;height:50%;margin-top:3px;"></span>
+          <span
+            ng-if="shop.is_ask_price=='0'" style="margin-left:0px;font-size:16px;">￥{{shop.goods_pc_price}}</span><span class="t3" ng-if="shop.is_ask_price=='0'&&shop.tips_id!=0&&shop.tips_type=='promotion'"
+              style="font-size:12px;">￥{{shop.goods_origin_price}}</span></li>
+        <li class="sj-l-5of5" style="bottom:6px;"><span style="font-size:10px;">评价：<a href="javascript:;">{{shop.assessment_count}}</a></span><span style="font-size:10px;">销量：<a href="javascript:;">{{shop.year_sales}}</a></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="box">
+    <!--分页-->
+    <div class="page-box" ng-if="pageNum>1">
+      <a href="javascript:;" ng-click="pageclick(nowpageNum-1)">上一页</a>
+      <span ng-repeat="page in pageboxs" ng-click="pageclick(page)" ng-class="{act:page==nowpageNum}">{{page}}</span>
+      <a class="act" href="javascript:;" ng-click="pageclick(nowpageNum*1+1)">下一页</a> 跳到
+      <input type="number" ng-model="nowpageNum2" width="20px;">/{{pageNum}}页<button ng-click="pageclick(nowpageNum2)">确定</button>
+    </div>
+  </div>
+</div>

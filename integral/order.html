@@ -1,0 +1,113 @@
+<script type="text/javascript" src="src/region_select.js"></script>
+<!--添加地址弹出框-->
+<div class="tck addhide" hidden>
+  <i></i>
+  <div class="address-box" hidden>
+     <div class="tit">编辑收货地址<span>&times;</span></div>
+     <div class="center">
+        <ul>
+          <li><label>*收货人</label><input ng-model="bjadd.name" id="name" type="text" /></li>
+          <li><label>*省市区</label><div class="zt-c-div1">
+              <span>{{morenadds?morenadds:'省市区'}}</span>
+              <div class="zt-c-d-center">
+                <p class="tit2"><span ng-click="seladd(1)" ng-class="{act:selCity==1}" tab>选择省</span><span ng-class="{act:selCity==2}">选择市</span><span ng-class="{act:selCity==3}">选择区</span></p>
+                <ul>
+                  <li ng-repeat="adds in seladds" ng-class="{act:(selCity==1&&$index==selAdd_p)}" tab><span ng-click="seladd((selCity*1+1*1),$index,selAdd_p,adds.id)" title="{{adds.name}}">{{adds.name}}</span></li>
+                </ul>
+              </div>
+            </div></li>
+          <!-- <li><label>*省市区</label><div class="add">
+                <select name="location_p" id="location_p">
+                </select>
+                <select name="location_c" id="location_c">
+                </select>
+                <select name="location_a" id="location_a">
+                </select></div></li> -->
+          <li><label>*详细地址</label><input ng-model="bjadd.detailed_address" type="text" id="add" /></li>
+          <li><label>*手机号码</label><input ng-model="bjadd.mobile" type="text" id="mobile" /></li>
+          <li><label>*邮编</label><input ng-model="bjadd.zip_code" type="text" id="zip_code" /></li>
+          <li><label>&nbsp;</label><span class="red">*为必填</span></li>
+          <li><label>&nbsp;</label><button ng-click="editadd(editaddid)">保存收货信息</button></li>
+        </ul>
+     </div>
+  </div>
+</div>
+
+
+<div class="top"></div>
+<div class="mainbox pad-b100">
+  <!--<div class="qrdd-tit box">填写并确认订单礼品</div>-->
+  <div class="box">
+    <div class="box_tit"><span style="float:left;">收货人信息</span><span style="float:right;"><a style="font-size:12px;color:#428FE2;font-weight:500" href="integral.html#/detail?goodsid={{listBeans.goods_id}}">返回修改订单礼品</a></span></div>
+    <div class="qrdd-addlist" style="border:1px solid #ebebeb;padding:30px;">
+      <!--<p class="tit"><a href="javascript:;" ng-click="editshow(0)">新增收货地址></a></p>-->
+      <ul class="zt-addbox" style="border-bottom:none;">
+        <li class="act" ng-repeat="add in addlists"><span ng-class="{act:add.is_default==1}" class="zt-span" title="{{add.name}}" ng-click="morenadd(add.address_id)" ztclick>{{add.name}}</span><span class="q-a-s2of6">{{add.province+add.city+add.country+add.detailed_address}}<span class="q-a-s3of6">({{add.mobile}})</span></span><span class="q-a-s4of6" ng-click="deladd(add.address_id)">删除</span><span class="q-a-s5of6" ng-click="editshow(add.address_id)">编辑</span></li>
+      </ul>
+      <div class="gd" moreadd>收起地址<span></span><p style="float:right;width:100px;line-height:30px;color:#F6802d;" ng-click="editshow(0)">新增收获地址</p></div>
+    </div>
+    <div style="margin-top:32px;" class="box_tit">订单信息</div>
+    <div class="qrdd-shoplistbox" style="border:1px solid #ebebeb;">
+      <!--<p class="tit mar-t40">订单商品信息</p>-->
+      <div class="qrdd-tit2" style="border-bottom:1px solid #F6A42D">
+       <ul>
+         <li style="width:50%">礼品名称</li>
+         <li style="width:16.7%">单价</li>
+         <li style="width:16.7%">数量</li>
+         <li style="width:16%">小计</li>
+       </ul>
+      </div>
+      <div class="qrdd-dp-box table qrdd-dp-box{{mlist.merchants_id}}" style="border-bottom:none;">
+       
+        <table cellpadding="0" cellspacing="0">
+          <tr style="border-bottom:none;">
+            <td class="td2" style="width:250px"><a target="_blank" href="integral.html#/detail?goodsid={{listBeans.goods_id}}"><i><img ng-src="{{listBeans.img}}" /></i></a></td>
+            <td class="td3" style="width:380px"><a target="_blank" href="integral.html#/detail?goodsid={{listBeans.goods_id}}">{{listBeans.goods_name}}</a></td>
+            <td class="td4" style="width:140px"><span>{{listBeans.integral_num}}</span></td>
+            <td class="td5"  style="width:250px">{{listBeans.goods_num}}</td>
+            <td class="td7 red" style="width:150px;padding:60px 15px;">{{listBeans.goods_num*listBeans.integral_num}}</td>
+          </tr>
+        </table>
+        </div>
+      </div>
+     
+      <!--是否积分-->
+      <!--<div class="qrdd-jf-select">
+        <ul>
+          <li class="jf" ng-if="grxx_centers.integral>0">
+            <span class="select" ng-click="jfpay()" dbclick></span>总共{{grxx_centers.integral}}积分，使用{{grxx_centers.integral/100>totalAmount*1+freight*1-yhqpays*1?chengCl(jianCl(addCl(totalAmount,freight),yhqpays),100):grxx_centers.integral}}积分抵扣￥{{grxx_centers.integral/100>totalAmount*1+freight*1-yhqpays*1?chengCl(jianCl(addCl(totalAmount,freight),yhqpays),jfbl.percent_value):chuCl(chengCl(grxx_centers.integral,jfbl.percent_value),100)}}
+          </li>
+        </ul>
+      </div>-->
+    </div>
+  </div>
+  <div class=" box clearfix" style="height:80px;background:#FFFAF7;margin-bottom:30px;">
+    <!--<div class="qrdd-money">
+      <ul>
+        <li class="act">总额：<span>￥{{totalAmount*1 | number:2}}</span></li>
+        <li class="yunfei">运费：<span>￥{{freight | number:2}}</span></li>
+        <li>优惠券：<span>-￥{{yhqpays | number:2}}</span></li>
+        <li>积分抵扣：<span>-￥{{jfpays | number:2}}</span></li>
+        <li class="act">应付总额：<span class="red">￥{{totalAmount*1-jfpays*1-yhqpays*1+1*freight>=0?(totalAmount*1>100000?(totalAmount*1-jfpays*1-yhqpays*1):(totalAmount*1-jfpays*1-yhqpays*1+1*freight)):0 | number:2}}</span></li>
+        <li  ng-repeat="add in addlists" ng-if="$index==0">寄送至：{{add.province+add.city+add.country+add.detailed_address}}</li>
+      </ul>
+    </div>
+    <button class="qrdd-btn" ng-click="tjdd()">提交订单</button>
+  </div>-->
+   <div style="float:right;height:100%;line-height:80px;margin-right:16px;">
+     <button class="" ng-click="tjdd()" style="border:0px;background:#F6802D;border-radius:2px;width:206px;height:48px;line-height:48px;font-size:18px;color:#fff;">提交订单</button>
+  </div>
+  <div style="float:right;height:100%;line-height:80px;color:#333333;font-size:16px;margin-right:16px;">
+    当前可用积分：<span class="num0">{{integral}}</span> &nbsp;&nbsp;订单消费总计：<span style="color:#F74739;font-size:20px;" class="num1">{{listBeans.goods_num*listBeans.integral_num}}</span><span style="color:#F74739;font-size:20px;">积分</span>
+  </div>
+</div>
+
+<script>
+$(".address-box>.tit span,.tck>i").click(function(){
+  $(".tck.addhide").hide();
+  $(".address-box").hide();
+})
+$(".zttck-box>.tit span,.zt-tck>i,.zt-tck .hui").click(function(){
+  $(".zt-tck").hide();
+})
+</script>

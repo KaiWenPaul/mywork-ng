@@ -1,0 +1,205 @@
+<link rel="stylesheet" type="text/css" href="src/flexslider.css" />
+<script type="text/javascript" src="src/jquery.flexslider-min.js"></script>
+
+<!--左右悬浮-->
+<div class="fixd" hidden>
+  <div class="fixd-l">
+    <ul>
+      <li ng-repeat="hs in homessort" id="{{hs.goods_id}}" l-Scroll><a href="javascript:;">{{hs.goods_name | limitTo:3}}</a></li>
+    </ul>
+  </div>
+
+</div>
+<!--主体内容-->
+<div class="mainbox clearfix" id="homeid">
+  <div style="background:#f5f5f5;width:100%;">
+    <!--banner-->
+    <div class="banner-box clearfix">
+      <div class="banner clearfix">
+        <div class="flexslider flexslider2">
+          <ul class="slides">
+            <li ng-repeat="z in banner" repeat-finish="flexslider()">
+              <a target="_blank" href="" ng-click="href(z.web_banner_url)"><img ng-src="{{z.web_banner_img}}" /></a>
+              <!--<a target="_blank" ng-if="z.banner_type=='goods'" href="index.html#/shop?shopid={{z.goods_id}}"><img ng-src="{{z.banner_img}}" /></a>
+                <a target="_blank" ng-if="z.banner_type=='class'" href="index.html#/shoplist?uuid={{z.goods_uuid}}"><img ng-src="{{z.banner_img}}" /></a>
+                <a target="_blank" ng-if="z.banner_type=='chain'" href=""><img ng-src="{{z.banner_img}}" /></a>
+                <a target="_blank" ng-if="z.banner_type!='common'&&z.banner_type!='goods'&&z.banner_type!='class'&&z.banner_type!='chain'" href=""><img ng-src="{{z.banner_img}}" /></a>-->
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="plate">
+        <!--用户信息-->
+        <div class="user_info">
+          <div class="user_info_img" style="width:92px;height:100%;float:left;text-align:center">
+            <i>
+              <img ng-if="membershow==0" src="images/default_head.png"  alt="">
+              <img ng-if="membershow==1" ng-src="{{grxx_centers.head_path}}" alt="">
+               </i>
+          </div>
+          <div class="user_info_con" style="width:158px;height:100%;float:right;">
+            <ul style="height:100%;">
+              <li style="padding:0px 30px 0px 20px;" ng-if="membershow==0">沃！欢迎您</li>
+              <li ng-if="membershow==0" class="li2">
+                <span style="float:left;" ng-click="tckshow(1)">登录</span>
+                <span style="float:right;margin-right:10px;" ng-click="tckshow(2)">注册</span>
+              </li>
+              <li style="text-align:left;padding-left:10px;" ng-if="membershow==1">Hi! {{grxx_centers.nick_name}}!</li>
+              <li class="li2" ng-if="membershow==1">
+                <span style="float:left;" ng-click="gocore(1)">个人中心</span>
+                <span style="float:right;margin-right:10px;" ng-click="gocore(2)">订单中心</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--波尔快报-->
+        <div class="news scrollbox" style="width:100%;height:140px;margin-bottom:1px;color:#666">
+          <div style="width:100%;height:30px;line-height:30px;padding-left:16px;border-bottom:1px solid #f5f5f5">沃快报</div>
+          <div id="scrollDiv">
+            <ul style="width:100%;padding:8px 5px 8px 16px;">
+              <li ng-repeat="listNews in news"><a href="{{listNews.news_web_html}}" title="{{listNews.news_name}}" class="linktit">{{listNews.news_name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--快捷通道-->
+        <div class="short_way" style="width:100%;height:157px;">
+          <table style="width:100%;height:100%;border-collapse:collapse;color:#666666">
+            <tr>
+              <td class="t1"><a style="padding-left:20px;" href="http://www.valubio.com/huodong.html#/buygood">商品求购</a></td>
+              <td class="t2"><a style="padding-left:20px;" href="http://www.valubio.com/core.html#/bzzx?b=198&c=1&type=2&tit=%E5%85%A5%E9%A9%BB%E6%8C%87%E5%8D%97">开店咨询</a></td>
+            </tr>
+            <tr>
+              <td class="t3"><a style="padding-left:35px;" href="core.html#/wdrz">申请企业购</a></td>
+              <td class="t4"><a style="padding-left:35px;" href="core.html#/xyrz">申请信用付</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--banner end-->
+    <!--猜你喜欢-->
+    <div class="box fenlei bs-bb clearfix">
+      <a href="index.html#/guess" class="hover">
+        <div class="new_list" style="background:#C2EEDC;">
+          <div class="list1"><img src="images/faxian/like.png" alt=""></div>
+          <div class="list2">
+            <h3>猜你喜欢</h3>
+            <p>专属你的购物指南</p>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#/fxhh" class="hover">
+        <div class="new_list" style="background:#C2DBEE;">
+          <div class="list1"><img src="images/faxian/haohuo.png" alt=""></div>
+          <div class="list2">
+            <h3>发现好货</h3>
+            <p>严选商品质量保证</p>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#/pplist" class="hover">
+        <div class="new_list" style="background:#C4C7E9;">
+          <div class="list1"><img src="images/faxian/pinpai.png" alt=""></div>
+          <div class="list2">
+            <h3 style="padding-right:26px;">品牌馆</h3>
+            <p>品牌荟萃正品保障</p>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#/dptt" class="hover">
+        <div class="new_list" style="background:#C4E5E9;">
+          <div class="list1"><img src="images/faxian/dianpu.png" alt=""></div>
+          <div class="list2">
+            <h3>店铺头条</h3>
+            <p>精选商家热门活动</p>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#/hotshop" class="hover">
+        <div class="new_list" style="background:#E9C4C4;float:right;margin-right:0px;">
+          <div class="list1"><img src="images/faxian/paihang.png" alt=""></div>
+          <div class="list2">
+            <h3 style="padding-right:26px;">排行榜</h3>
+            <p>分类排名人气指标</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!---->
+  <div class="bg-f5 pad-t70 pad-b70">
+    <!--试剂等-->
+    <div class="shiji box" ng-repeat="hs in homessort" id="sort{{hs.goods_id}}">
+      <div class="tit"><span ng-bind="hs.goods_name"></span>
+        <p><a ng-repeat="hs2 in hs.goodsBeans" class="{{$index==0?'act':''}}" ng-bind="hs2.goods_name" href="javascript:;" ng-click="hometabsort($index,hs.goods_id)"></a></p>
+      </div>
+      <div class="shiji-box clearfix">
+        <div class="sj-leftbox"><a target="_blank" href="{{hs.classBannerBeans[0].banner_url}}"><img ng-src="{{hs.classBannerBeans[0].banner_img}}"  /></a></div>
+        <div class="sj-rightbox bs-bb" ng-repeat="hs3 in hs.goodsBeans" ng-class="{act:$index==0}">
+          <div class="sj-r-list" ng-repeat="shop in hs3.goodsRecommendBeans" ng-if="$index<8" ng-click="index(shop.goods_id)">
+            <!--<a style="width:230px;height:350px;position:absolute;top:0px;left:0px;" target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}"></a>-->
+            <ul>
+              <li class="sj-l-1of5"><img lazy-src="{{shop.goods_img!=''?shop.goods_img:'images/zw1.png'}}" onerror="this.src='images/zw1.png'"
+                /></li>
+              <li title="{{shop.goods_name}}" style="height:37px;line-height:37px;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; word-break: break-all;margin-top:3px;">{{shop.goods_name}}</li>
+              <li class="sj-l-4of5"><span ng-if="shop.brand_name!=''" style="vertical-align:middle;min-width:40px;margin-right:3px;">{{shop.brand_name}}</span>
+                <span style="vertical-align:middle;width:36px;font-size:10px;padding:0px;margin-right:0px;" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">货号：</span>
+                <span style="vertical-align:middle;font-size:10px;width:64px;margin-right:0px;padding:0px;" class="huo" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">{{shop.goods_sku!=''?shop.goods_sku:'暂无'}}</span>
+              </li>
+              <li class="sj-l-4of5" style="margin-top:8px;"><span style="font-size:10px;color:#fff;background:#EA2922;line-height:16px;border-radius:2px;height:16px;margin-left:2px;"
+                  ng-if="shop.merchants_id == '1'">自营</span><span class="hui" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">惠</span>
+                <span class="zhe" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">{{shop.tips_name}}</span>
+              </li>
+              <li class="sj-l-2of5" style="margin-top:3px;"><span ng-if="shop.is_ask_price=='1'"><img src="./images/askPrice1.png" alt="" style="width:45%;height:50%;margin-top:3px;"></span>
+                <span ng-if="shop.is_ask_price=='0'" style="margin-left:0px;font-size:16px;">￥{{shop.goods_pc_price}}</span>
+                <span class="t3" ng-if="shop.is_ask_price=='0'&&shop.tips_id!=0&&shop.tips_type=='promotion'" style="font-size:12px;">￥{{shop.goods_origin_price}}</span>
+              </li>
+              <li class="sj-l-5of5" style="bottom:6px;"><span style="font-size:10px;">评价：<a href="javascript:;">{{shop.assessment_count}}</a></span><span style="font-size:10px;">销量：<a href="javascript:;">{{shop.year_sales}}</a></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--品牌商标-->
+      <div class="box pinpai-trademark mar-t30 mar-b70" ng-if="hs.brandBeans.length>0">
+        <!--ng-if="hs.brandBeans.length>0"-->
+        <a target="_blank" href="#/pinpai?bid={{brand.brand_id}}&goods_uuid={{hs.goods_id}}" ng-if="$index<6" ng-repeat="brand in hs.brandBeans"><img title="{{brand.brand_name}}" ng-src="{{brand.brand_img}}" /></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+  //手风琴
+  $(".fenlei .list").mouseover(function () {
+    $(".fenlei .list").removeClass("act");
+    $(this).addClass("act")
+  })
+  $(window).scroll(function () {
+    //console.log($(window).scrollTop())
+    var h = $(window).scrollTop();
+    if (h > 1000) {
+      var fixdH = document.body.offsetHeight;
+      var fixdH_l = $(".fixd-l").height();
+      $(".fixd-l").css("margin-top", (fixdH - fixdH_l) / 2)
+      $('.fixd').fadeIn()
+    } else {
+      $('.fixd').fadeOut();
+    }
+    if (h > 1000) {
+      var len = $('.fixd li').length;//$scope.hsid
+      for (var i = 0; i < len; i++) {
+        if ($("#sort" + $('.fixd li').eq(i).attr('id')).offset().top < (h + 400) && $("#sort" + $('.fixd li').eq(i).attr('id')).offset().top > (h - 400)) {
+          if ($("#" + $('.fixd li').eq(i).attr('id')).attr('val') != 1) {
+            $('.fixd-l ul li').removeClass('act')
+            $("#" + $('.fixd li').eq(i).attr('id')).addClass('act');
+          }
+        }
+      }
+    }
+
+  });
+  $(document).ready(function () {
+    $("#scrollDiv").Scroll({ line: 1, speed: 500, timer: 3000, up: "but_up", down: "but_down" });
+  });
+
+</script>

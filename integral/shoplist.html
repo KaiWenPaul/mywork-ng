@@ -1,0 +1,62 @@
+<!--主体内容-->
+<div class="clearfix" style="background:#f5f5f5;margin-top:40px;">
+  <!--面包屑-->
+  <div class="mbx-navbox" style="background:#f5f5f5;">
+    <div class="mbx-nav">
+      <div class="mbx-nav-l"><a href="#/">首页</a>
+      <a href="javascript:;">{{search_name}}</a></div>
+    </div>
+  </div>
+  <!---->
+  <!--<div class="box  clearfix" style="margin-top:10px;background:#fff;">
+   <ul class="select">
+		<li class="select-list" ng-repeat="list in datas">
+			<dl id="select1">
+				<dt>{{list.name}}：</dt>
+				<dd class="select-all selected"><a href="">全部</a></dd>
+				<dd ng-click="test()"><a href="">针织衫</a></dd>
+				<dd><a href="">毛呢外套</a></dd>
+				<dd ng-repeat="l in list.brandBeans"><a href="">{{l.brand_name}}</a></dd>
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select2">
+				<dt>裤装：</dt>
+				<dd class="select-all selected"><a href="">全部</a></dd>
+				<dd><a href="">牛仔裤</a></dd>
+				<dd><a href="">小脚/铅笔裤</a></dd>
+				<dd><a href="">休闲裤</a></dd>
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select3">
+				<dt>裙装：</dt>
+				<dd class="select-all selected"><a href="">全部</a></dd>
+				<dd><a href="">连衣裙</a></dd>
+				<dd><a href="">半身裙</a></dd>
+				<dd><a href="">长袖连衣裙</a></dd>
+			</dl>
+		</li>
+		<li class="select-result">
+			<dl>
+				<dt>已选条件：</dt>
+				<dd class="select-no">暂时没有选择过滤条件</dd>
+			</dl>
+		</li>
+	 </ul>
+  </div>-->
+  <div class="jifen">
+    <div style="width:1200px;min-height:800px;margin:0px auto;" class="jifen-list1">
+          <div style="width:100%;" class="con">
+            <div  class="con-list" style="background:#fff;" ng-repeat="list in  datalist">
+                <a style="width:230px;height:330px;position:absolute;top:0px;left:0px;cursor:pointer;"  href="integral.html#/detail?goodsid={{list.goods_id}}"></a>
+              <ul style="display:block;">
+                <li class="jifen-list1-li0"><img ng-src="{{list.goods_img}}" alt="" style="max-width:100%;max-height:100%;vertical-align: middle;height:180px;line-height:180px;"></li>
+                <li class="jifen-list1-li1">{{list.goods_name}}</li>
+                <li class="jifen-list1-li2"><img src="images/ji.png" alt="" ><span>{{list.integral_num}}</span></li>
+              </ul>
+            </div>
+    </div>
+  </div>
+</div>
+</div>

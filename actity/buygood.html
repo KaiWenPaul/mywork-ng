@@ -1,0 +1,60 @@
+<script language="javascript" type="text/javascript" src="src/My97DatePicker/WdatePicker.js"></script>
+<div class="clearfix huodong">
+  <div style="width:960px;height:80px;text-align:center;background:#4DA0F3;margin:0 auto;line-height:80px;color:#fff;font-size:20px;">商品求购</div>
+  <div class="con_box" style="width:960px;min-height:400px;padding-bottom:20px;">
+      <table style="margin:0 auto;" class="tab">
+          <tr>
+              <td class="td1"><span>*</span>姓名</td>
+              <td class="td2"><input type="text" placeholder="请填写您的真实姓名" id="name"></td>
+          </tr>
+           <tr>
+              <td class="td1">单位</td>
+              <td class="td2"><input type="text" placeholder="请填写您的单位名称" id="unit"></td>
+          </tr>
+          <tr>
+              <td class="td1"><span>*</span>电话</td>
+              <td class="td2"><input type="text" placeholder="请填写固定电话或移动电话" id="phone"></td>
+          </tr>
+           <tr>
+              <td class="td1"><span>*</span>邮箱</td>
+              <td class="td2"><input type="text" placeholder="请填写您的邮箱地址" id="email"></td>
+          </tr>
+          <tr>
+              <td class="td1"><span>*</span>商品品牌</td>
+              <td class="td2"><input type="text" placeholder="请您尽可能填写完整" id="brand"></td>
+          </tr>
+           <tr>
+              <td class="td1"><span>*</span>商品货号</td>
+              <td class="td2"><input type="text" placeholder="请填写正确货号" id="goodnum"></td>
+          </tr>
+           <tr>
+              <td class="td1">商品名称</td>
+              <td class="td2"><input type="text" placeholder="请您尽可能填写完整" id="goodname"></td>
+          </tr>
+           <tr>
+              <td class="td1"><span>*</span>规格</td>
+              <td class="td2"><input type="text" placeholder="商品规格" id="size"></td>
+          </tr>
+           <tr>
+              <td class="td1"><span>*</span>数量</td>
+              <td class="td2"><input type="text" placeholder="请填写需求数量" id="num"></td>
+          </tr>
+           <tr>
+              <td class="td1"><span>*</span>到货时间</td>
+              <td class="td2"><input type="text" class="laydate-icon" placeholder="请填写正确日期" id="date" onClick="WdatePicker()"></td>
+          </tr>
+           <tr>
+              <td class="td1" style="padding-bottom:0px;height:0px;line-height:0px;"><span style="position:relative;top:-65px;left:0px;color:#666666">备注信息</span></td>
+              <td class="td2" style="padding-bottom:0px;height:0px;line-height:0px;"><textarea type="text" placeholder="可填写特殊需求" id="tips"></textarea></td>
+          </tr>
+           <tr>
+              <td style="height:10px;line-height:10px;"></td>
+              <td style="height:10px;line-height:10px;font-size:12px;color:#666666;">"<span style="color:red;">*</span>"号为必填</td>
+          </tr>
+      </table>
+      <div  class="ok">
+        <span style="float:left;background:#4DA0F3;color:#fff" ng-click="sure()">确认</span>
+        <span style="float:right;color:#666;" ng-click="backward()">返回</span>
+      </div>
+  </div>
+</div>

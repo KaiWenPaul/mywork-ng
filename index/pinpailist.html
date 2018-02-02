@@ -1,0 +1,92 @@
+<!--主体内容-->
+<div class="mainbox clearfix bg-f5 pad-b70">
+  <!--面包屑-->
+  <div class="mbx-navbox">
+    <div class="mbx-nav">
+      <!--<a href="javascript:;">{{pinpaidetails.brand_name}}</a>-->
+      <div class="mbx-nav-l"><a href="#/">首页</a><a href="#/pplist">品牌馆</a></div>
+    </div>
+  </div>
+  <!---->
+  <!---->
+  <!--<div class="box shop-sorts bg-fff clearfix">
+     <div class="ppsort ppbor clearfix">
+       <label>分类</label>
+       <div class="sortbox1">
+          <ul>
+            <li class="act" tab><span ng-click="ssclicks('fenlei','')">全部</span></li>
+            <li ng-repeat="sort in pinpaisorts" sort-top tab>
+              <span ng-click="ssclicks('fenlei',sort.goods_uuid)" ng-mouseover="pinpaisort2(2,sort.goods_id,$index)">{{sort.goods_name}}</span>
+              <div class="sortbox2" hidden>
+                <ul>
+                  <li ng-repeat="sort2 in sort.sort2" sort-top2>
+                    <span ng-click="ssclicks('fenlei',sort2.goods_uuid)" ng-mouseover="pinpaisort3(3,sort2.goods_id,$index)">{{sort2.goods_name}}</span>
+                    <div class="sortbox3" hidden>
+                      <ul>
+                        <li ng-repeat="sort3 in sort2.sort3" ng-click="ssclicks('fenlei',sort3.goods_uuid)" tab>{{sort3.goods_name}}</li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+       </div>
+    </div>
+     <div class="s-s-list clearfix" ng-repeat="sps in shoppinpais" ng-if="sps.type=='activity'" id="{{sps.type}}">
+        <label>{{sps.name}}</label>
+        <div class="s-s-l-sp-list">
+          <ul>
+            <li ng-repeat="zk in sps.activityBeans" val='{{zk.activity_id}}' ng-click="ssclicks(sps.type,zk.activity_id)" ss-Click><span></span>{{zk.activity_name}}</li>
+          </ul>
+        </div>
+        <div class="s-s-l-btn s-s-l-btn2">
+          <a href="javascript:void(0);" class="dx" ss-Click2>+多选</a>
+          <a href="javascript:void(0);" ng-click="ssclicks(sps.type,'')" ss-Click8>清空</a>
+        </div>
+        <p><a class="qr" href="javascript:void(0);" ng-click="dbclicks(sps.type)" ss-Click3>确认</a><a class='qx' href="javascript:void(0)" ss-Click4>取消</a></p>
+     </div>
+     <div class="s-s-list clearfix" ng-repeat="sps in shoppinpais" ng-if="sps.type=='service'" id="{{sps.type}}">
+        <label>{{sps.name}}</label>
+        <div class="s-s-l-sp-list">
+          <ul>
+            <li ng-repeat="fw in sps.goodsLabelBeans" val='{{fw.label_id}}' ng-click="ssclicks(sps.type,fw.label_id)" ss-Click><span></span>{{fw.label_name}}</li>
+          </ul>
+        </div>
+        <div class="s-s-l-btn s-s-l-btn2">
+          <a href="javascript:void(0);" class="dx" ss-Click2>+多选</a>
+          <a href="javascript:void(0);" ng-click="ssclicks(sps.type,'')" ss-Click8>清空</a>
+        </div>
+        <p><a class="qr" href="javascript:void(0);" ng-click="dbclicks(sps.type)" ss-Click3>确认</a><a class='qx' href="javascript:void(0);" ss-Click4>取消</a></p>
+     </div>
+  </div>-->
+  <!--111111-->
+  <!---->
+  <!--没有商品时提示-->
+  <div style="text-align:center" ng-if="shoptotal===0">
+    没有搜到相关品牌，去看看其他品牌吧
+  </div>
+  <div class="box clearfix  pinpai" style="margin-top:10px;">
+    <div class="main-rightbox" style="width:1198px;">
+      <div class="clearfix  pinpai">
+        <div class="sj-r-list sjx" ng-repeat="pp in shoppinpais" style="height:190px;">
+
+          <a style="width:230px;height:190px;position:absolute;top:0px;left:0px;" target="_blank" href="index.html#/pinpai?bid={{pp.brand_id}}"></a>
+          <ul>
+            <li class="sj-l-1of5" style="height:125px"><img ng-src="{{pp.brand_img}}" /></li>
+            <li class="sj-l-3of5" style="margin-top:15px;" ng-bind-html="pplistHtml[$index]"></li>
+          </ul>
+        </div>
+      </div>
+
+      <!--分页-->
+      <div class="page-box" ng-if="pageNum>1">
+        <a href="javascript:;" ng-click="pageclick(nowpageNum-1)">上一页</a>
+        <span ng-repeat="page in pageboxs" ng-click="pageclick(page)" ng-class="{act:page==nowpageNum}">{{page}}</span>
+        <a class="act" href="javascript:;" ng-click="pageclick(nowpageNum*1+1)">下一页</a> 跳到
+        <input type="number" ng-model="nowpageNum2" width="20px;">/{{pageNum}}页<button ng-click="pageclick(nowpageNum2)">确定</button>
+      </div>
+    </div>
+  </div>
+
+</div>

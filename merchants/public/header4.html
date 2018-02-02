@@ -1,0 +1,12 @@
+<div class="other_header" style="width:960px;height:90px;margin:0 auto;padding:10px 0px;">
+   <div class="logo_picture" style="width:288px;height:58px;float:left;"> <a href="index.html#/" ng-click="foward()"><img src="images/new_homelogo.png" /></div>
+   <div class="back_index" style="float:right;height:100%;line-height:58px;text-align: center;color:#4DA0F3"><a href="index.html#/" style="color:#4DA0F3">返回首页</a></div>
+</div>
+<!--alert tck 优化-->
+<div class="tck alert" ng-if="alertshow==1">
+  <i ng-click="alerttxt('',1)"></i>
+  <div class="alert-box">
+    <p class="tit">友情提示<span ng-click="alerttxt('',1)">&times;</span></p>
+    <p class="txt">{{alerttxts}}</p>
+  </div>
+</div>

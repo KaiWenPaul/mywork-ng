@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chat_list.html</title>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link rel="stylesheet" href="../common.css" type="text/css" />
+<link rel="stylesheet" href="chat_list.css" type="text/css" />
+<script type="text/javascript" src="../js/huanxin/sdk/strophe.js"></script>
+<script type="text/javascript" src="../js/huanxin/sdk/easemob.im-1.1.js"></script>
+<script type="text/javascript"
+	src="../js/huanxin/sdk/easemob.im-1.1.shim.js"></script>
+<script type="text/javascript" src="../js/huanxin/easemob.im.config.js"></script>
+<script type="text/javascript" src="../js/huanxin/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="../js/huanxin/bootstrap.js"></script>
+<script type="text/javascript" src="../common.js"></script>
+<script type="text/javascript" src="chat_list.js"></script>
+</head>
+
+<body style="height: 100%;background-color: #ffffff">
+	<div
+		style="position: absolute;left: 10%;top: 50px;;width: 80%;height: auto;border: 2px solid;border-color: #efefef;">
+		<div
+			style="float:left; width:15%; height: 550px; background-color:#003E6F;border:none;">
+			<div style="height: 80px;background-color: #003E6F;text-align: center;">
+				<img id='merchants_img' alt="头像" src="../images/banner/banner1.jpg" style='width:60px;margin-top: 10px;height: 60px;border-radius:60px;'>
+			</div>
+			<div id='menuList'></div>
+		</div>
+		<div id='chat'
+			style="float:left; width:85%; height: 550px;; background-color:#ffffff;border:none;">
+			<div style="height: 50px;background-color: #215F90;line-height: 50px;">
+				<label id='chatName' style='color:#ffffff;margin-left: 20px;'></label>
+			</div>
+			
+			<div id='chatList' style="height: 310px;overflow: auto;">
+				
+			</div>
+			<div id="wl_faces_box" style='position: absolute;background:url("static/img/biaoqingmianban1.png") no-repeat 0 0;
+			left: -50px;bottom: 179px;width: 416px;height:325px;display: none;'>
+				<div id='emotionUL' style="width: 90%;height: 90%;margin-left: 5%;margin-top: 5%;overflow: hidden;">
+				</div>                
+    		</div>
+			<div style="height: 30px;background-color: #215F90">
+				<img alt="" src="../images/icon/biaoqing.png" 
+				style="width: 20px;height: 20px;margin-top: 5px;margin-left: 10px;"
+				onclick="showEmotionDialog()"/>
+				<img alt="" src="../images/icon/tupian.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 10px;"
+				onclick='sendImg()'/>
+			</div>
+			
+			<div style="height: 120px;text-align: center;">
+				<textarea id='txtMsg' style="width:99%;height: 100%;padding: 0px;margin: 0px;border: none;"></textarea>
+			</div>
+			<div style="height: 40px;background-color: #ffffff;">
+				<input type="button" value="发送" onclick="sendTxtMsg()"
+					style="width: auto;padding-left: 20px;padding-right: 20px;position: absolute;
+					right: 5px;bottom: 5px;height: 30px;background-color: #003E6F;color: #ffffff;border: none;" />
+				<input type="button" value="关闭" onclick="closeChat()"
+					style="width: auto;padding-left: 20px;padding-right: 20px;position: absolute;
+					right: 100px;bottom: 5px;height: 30px;background-color: #003E6F;color: #ffffff;border: none;" />
+			</div>
+		</div>
+	</div>
+	
+	
+	<input type='file' id="fileInput" style='display:none;'/>
+</body>
+</html>

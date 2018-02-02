@@ -1,0 +1,131 @@
+<!--header end-->
+<div class="mainbox pad-b100">
+  <div class="box gwc-tabbox clearfix mar-b40">
+    <div class="gwc-tab fl"><a href="#/">本地</a>|<a href="#/gwcin" ng-click="goin()">购物IN</a>|<a href="#/gwcout" class="act">购物OUT</a></div>
+  </div>
+  <div class="box gwc-search-box"></div>
+  <div class="box">
+     <div class="gwc-tit">
+       <ul>
+         <li>&nbsp;<!-- <span class="" ng-click="qxact()"></span>全选 --></li>
+         <li>商品</li>
+         <li>单价</li>
+         <li>数量</li>
+         <li>金额</li>
+         <li>操作</li>
+       </ul>
+     </div>
+  </div>
+  <div class="share-list" ng-repeat="gwcout in gwcoutlists" id="share{{gwcout.member_car_id}}">
+      <div class="gwc-box box">
+         <div class="gwc-listbox2">
+           <div class="gwc-share-tit mar-t40">
+           <span type="{{gwcout.order_state}}" class="sel" val="{{gwcout.member_car_id}}" ng-click="shareact(gwcout.member_car_id)"></span>分享给<span class="red">{{gwcout.memberBean.nick_name}}（{{gwcout.memberBean.member_account}}）</span><span class="red mar-l20">{{gwcout.order_state==1?'对方已下单':'对方未购买（可修改）'}}</span>
+              <a href="javascript:;" sharegd>收起<i></i></a>
+           </div>
+           <div class="gwc-dp-box table" ng-repeat="mlist in gwcout.shoppingCarShareBeans" id="mid{{mlist.merchants_id}}">
+              <div class="gwc-dp-tit">
+                 <i class="dpimg"></i>
+                 <!-- <span ng-click="gwcdpact(mlist.merchants_id,gwcout.member_car_id)"></span> -->{{mlist.merchantsBean.merchants_name}}<!-- <small>自营</small> -->
+                 <p>{{mlist.merchantsBean.express_free_price==0?'免运费':'购满￥'+mlist.merchantsBean.express_free_price+'免运费'}}</p>
+              </div>
+              <table cellpadding="0" cellspacing="0">
+                <tr ng-repeat="slist in mlist.shoppingCarBeans" id="gwc{{slist.car_id}}">
+                  <td class="td1"><!-- <span val="{{slist.car_id}}" ng-click="gwcshopact(gwcout.member_car_id,slist.car_id)"></span> --></td>
+                  <td class="td2"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}"><i><img ng-src="{{slist.goodsBean.goods_img}}" /></i></a></td>
+                  <td class="td3"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}">{{slist.goodsBean.goods_name}}</a></td><!--<span>{{slist.goods_parameters_name}}</span>-->
+                  <td class="td4 red">￥<span class="red">{{slist.car_total_pc_price}}</span></td>
+                
+
+                
+                  <td class="td5" ng-if="gwcout.order_state!=1"><p class="num"><span class="jian" ng-click="jjnum(slist.car_id,'jian',slist.share_car_id,gwcout.member_car_id)">-</span><input type="tab" ng-value="slist.goods_num" ng-model="count" ng-change="jjnum(slist.car_id,'xg',slist.share_car_id,gwcout.member_car_id)" ng-blur="blurnum(slist.car_id,slist.share_car_id,gwcout.member_car_id)" /><span ng-click="jjnum(slist.car_id,'jia',slist.share_car_id,gwcout.member_car_id)" class="jia">+</span></p><span val="{{slist.goodsBean.goods_stock}}">{{slist.goodsBean.is_supply>0?'有货':'无货'}}</span></td>
+                  
+
+
+                  <td class="td5" val="{{slist.goods_num}}" ng-if="gwcout.order_state==1">ｘ{{slist.goods_num}}<br><span val="{{slist.goodsBean.goods_stock}}">{{slist.goodsBean.is_supply>0?'有货':'无货'}}</span></td>
+                  <td class="td6">￥<span class="red">{{slist.total_pc_price | number:2}}</span>
+                    <div class="cx-select" ng-show="slist.goodsBean.activityBeans.length!=0" sel-cx>
+                      <span>促销优惠</span>
+                      <ul hidden>
+                        <li ng-repeat="sel in slist.goodsBean.activityBeans">{{sel.activity_name}}</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td class="td7"><a ng-if="gwcout.order_state!=1" href="javascript:;" ng-click="delgwc(slist.car_id,slist.share_car_id)">删除</a>
+                   <a target="_blank" ng-if="gwcout.order_state==1" href="core.html#/ddxq?orderid={{slist.order_id}}">查看详情</a>
+                   <!-- <a href="javascript:;">移到我的收藏</a> --></td>
+                </tr>
+              </table>
+           </div>
+
+         </div>
+      </div>
+  </div>
+  <div class="box" ng-if="gwcoutlists">
+     <!--gwc-listbox end-->
+     <div class="gwc-btn clearfix">
+       <ul>
+         <li class="g-b-1of4">&nbsp;<!-- <span ng-click="qxact()"></span> 全选--></li>
+         <li class="g-b-2of4">&nbsp;<!-- <a href="javascript:;" class="act" ng-click="delgwc(0)">删除选中商品</a> --><!-- <a href="javascript:;">移到我的收藏</a> --></li>
+         <li class="g-b-3of4 r"><span>{{zmoneys>0?zmoneys:'' | currency : '￥'}}</span><label>共{{znums}}件商品，总价：</label></li>
+<!--          <li class="g-b-4of4"><button ng-click="goqrdd()">结算</button></li>
+ -->       </ul>
+     </div>
+  </div>
+
+
+  <div class="gwc-box box" ng-if="gwcshoplist.length==0">
+    <div class="gwc-k-box">
+      <div>
+        购物车空空的哦~快去看看心仪的商品吧
+        <a href="index.html#/shoplist">去购物></a>
+      </div>
+    </div>
+    <div class="guess-you-like box mar-t60" ng-if="guessyouliketotal>0">
+     <div class="tit"><h1>猜你喜欢</h1><p ng-if="guessyoulikepagenum>1">{{guessyoulikepage}}/{{guessyoulikepagenum>4?'4':guessyoulikepagenum}}<span ng-click="guessyoulike(guessyoulikepage*1-1*1)"><</span><span class="act" ng-click="guessyoulike(guessyoulikepage*1+1*1)">></span></p></div>
+     <div class="g-y-l-listbox clearfix">
+       <div class="sj-r-list" ng-repeat="shop in guessyoulikes">
+           <a style="width:230px;height:350px;position:absolute;top:0px;left:0px;"target="_blank"  href="index.html#/shop?shopid={{shop.goods_id}}"></a>
+          <ul>
+                  <li class="sj-l-1of5"><img ng-src="{{shop.goods_img}}"/></li>
+                  <li class="sj-l-3of5">{{shop.goods_name}}</li>
+                  <li class="sj-l-4of5"><span ng-if="shop.brand_name!=''"  style="vertical-align:middle;min-width:40px;margin-right:3px;">{{shop.brand_name}}</span><span style="vertical-align:middle;width:36px;font-size:10px;padding:0px;margin-right:0px;" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">货号：</span><span style="vertical-align:middle;font-size:10px;width:64px;margin-right:0px;padding:0px;"class="huo" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">{{shop.goods_sku}}</span></li>
+                  <li class="sj-l-4of5" style="margin-top:8px;"><span style="font-size:10px;color:#fff;background:#EA2922;line-height:16px;border-radius:2px;height:16px;margin-left:2px;" ng-if="shop.merchants_id == '1'">自营</span><span class="hui" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">惠</span><span class="zhe" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">{{shop.tips_name}}</span></li>
+                  <li class="sj-l-2of5" style="margin-top:3px;"><span ng-if="shop.is_ask_price=='1'"><img src="./images/askPrice1.png" alt="" style="width:45%;height:50%;margin-top:3px;"></span><span ng-if="shop.is_ask_price=='0'" style="margin-left:0px;font-size:16px;">￥{{shop.goods_pc_price}}</span><span class="t3" ng-if="shop.is_ask_price=='0'&&shop.tips_id!=0&&shop.tips_type=='promotion'" style="font-size:12px;">￥{{shop.goods_origin_price}}</span></li>
+                  <li class="sj-l-5of5" style="bottom:6px;"><span style="font-size:10px;">评价：<a href="javascript:;">{{shop.assessment_count}}</a></span><span style="font-size:10px;">销量：<a href="javascript:;">{{shop.year_sales}}</a></span></li>
+          </ul>
+       </div>
+
+     </div>
+     <!--g-y-l-listbox end-->
+    </div>
+  </div>
+
+  <div class="gwc-box box" ng-if="membershow==0">
+    <div class="gwc-k-box">
+      <div>
+        你还没登录哦！
+        <a href="" ng-click="tckshow(1)">去登录></a>
+      </div>
+    </div>
+    <div class="guess-you-like box mar-t60" ng-if="guessyouliketotal>0">
+     <div class="tit"><h1>猜你喜欢</h1><p ng-if="guessyoulikepagenum>1">{{guessyoulikepage}}/{{guessyoulikepagenum>4?'4':guessyoulikepagenum}}<span ng-click="guessyoulike(guessyoulikepage*1-1*1)"><</span><span class="act" ng-click="guessyoulike(guessyoulikepage*1+1*1)">></span></p></div>
+     <div class="g-y-l-listbox clearfix">
+       <div class="sj-r-list" ng-repeat="shop in guessyoulikes">
+           <a style="width:230px;height:350px;position:absolute;top:0px;left:0px;"target="_blank"  href="index.html#/shop?shopid={{shop.goods_id}}"></a>
+          <ul>
+                  <li class="sj-l-1of5"><img ng-src="{{shop.goods_img}}"/></li>
+                  <li class="sj-l-3of5">{{shop.goods_name}}</li>
+                  <li class="sj-l-4of5"><span ng-if="shop.brand_name!=''"  style="vertical-align:middle;min-width:40px;margin-right:3px;">{{shop.brand_name}}</span><span style="vertical-align:middle;width:36px;font-size:10px;padding:0px;margin-right:0px;" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">货号：</span><span style="vertical-align:middle;font-size:10px;width:64px;margin-right:0px;padding:0px;"class="huo" ng-if="shop.show_sku!=null&&shop.show_sku=='1'">{{shop.goods_sku}}</span></li>
+                  <li class="sj-l-4of5" style="margin-top:8px;"><span style="font-size:10px;color:#fff;background:#EA2922;line-height:16px;border-radius:2px;height:16px;margin-left:2px;" ng-if="shop.merchants_id == '1'">自营</span><span class="hui" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">惠</span><span class="zhe" ng-if="shop.tips_id!=0&&shop.tips_id!=null" style="font-size:10px;">{{shop.tips_name}}</span></li>
+                  <li class="sj-l-2of5" style="margin-top:3px;"><span ng-if="shop.is_ask_price=='1'"><img src="./images/askPrice1.png" alt="" style="width:45%;height:50%;margin-top:3px;"></span><span ng-if="shop.is_ask_price=='0'" style="margin-left:0px;font-size:16px;">￥{{shop.goods_pc_price}}</span><span class="t3" ng-if="shop.is_ask_price=='0'&&shop.tips_id!=0&&shop.tips_type=='promotion'" style="font-size:12px;">￥{{shop.goods_origin_price}}</span></li>
+                  <li class="sj-l-5of5" style="bottom:6px;"><span style="font-size:10px;">评价：<a href="javascript:;">{{shop.assessment_count}}</a></span><span style="font-size:10px;">销量：<a href="javascript:;">{{shop.year_sales}}</a></span></li>
+          </ul>
+       </div>
+
+     </div>
+     <!--g-y-l-listbox end-->
+    </div>
+  </div>
+</div>
+

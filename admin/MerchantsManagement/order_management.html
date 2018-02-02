@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>order_list.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+
+    <link rel="stylesheet" href="../../common.css" type="text/css"></link>
+	<script type="text/javascript" src="../../js/jquery.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../../js/mydate.js"></script>
+	<script type="text/javascript" src="../../common.js"></script>
+	<script type="text/javascript" src="order_management.js"></script>
+
+  </head>
+  
+  <body>
+    <div class='listHorizontalItem'
+		style="min-height:50px;text-align: right;margin-top: 1%">
+		<label >订单状态:</label>
+		<select id='order_state' style="width:100px;size: 100px;">
+			<option tag="-1">全部</option>
+			<option tag="wait_pay">待付款</option>
+			<option tag="wait_send">待发货</option>
+			<option tag="wait_receive">待收货</option>
+			<option tag="wait_assessment">待评价</option>
+			<option tag="end">已结束</option>
+			<option tag="cancel">已取消</option>
+		</select>
+		<input type='button' value="搜索" style='margin-right: 1%;'
+			onclick='searchOrder()'></input>
+  </div>
+  <div class="listAll" style='margin-top: 1%;border-top: 1px solid;border-top-color:#efefef;'>
+		<div class="listHorizontalItem">
+			<label class="listLabel" style="width: 5%;">序号</label>
+			<label class="listLabel" style="width: 5%;">ID</label>
+			<label class="listLabel" style="width: 10%;">订单号</label>
+			<label class="listLabel" style="width: 5%;">发票抬头</label>
+			<label class="listLabel" style="width: 5%;">联系电话</label>
+			<label class="listLabel" style="width: 5%;">联系人</label>
+			<label class="listLabel" style="width: 5%;">省</label>
+			<label class="listLabel" style="width: 5%;">市</label>
+			<label class="listLabel" style="width: 5%;">区</label>
+			<label class="listLabel" style="width: 5%;">详细地址</label>
+			<label class="listLabel" style="width: 5%;">邮编</label>
+			<label class="listLabel" style="width: 5%;">订单状态</label>
+			<label class="listLabel" style="width: 5%;">总金额</label>
+			<label class="listLabel" style="width: 5%;">下单时间</label>
+			<label class="listLabel">操作</label>
+		</div>
+	</div>
+	
+	<div id="listAll">
+		
+	</div>
+		
+	<iframe name="pageIframe" id="pageIframe" frameborder="0"
+			marginwidth="0" marginheight="0" width="100%" src="../../page.html"></iframe>
+  </body>
+</html>

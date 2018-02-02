@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="../src/banklist.css" />
+<div class="mainbox pad-b100" style="margin-top:40px;border-top:2px solid #F6A42D;">
+  <div class="box">
+    <div class="success-message1">
+      <ul>
+        <li class="red li1">订单提交成功</li>
+        <li class="li2">订单已提交至处理中心&nbsp;&nbsp;&nbsp;订单号：2017111025656865555</li>
+        <li class="li3">收货信息：&nbsp;李元亮 15664070615 &nbsp;上海&nbsp;上海市&nbsp;徐汇区&nbsp;天平路街道&nbsp;徐汇区肇家浜路（坤阳国际商务广场）&nbsp;798号408室&nbsp;</li>
+      </ul>
+    </div>
+
+    <div class="qrdd-shoplistbox">
+        <div class="qrdd_tit qrdd-tit2" style="background: #FFFAF7;border-bottom:none;">
+        <ul>
+            <li style="width:50%">礼品名称</li>
+            <li style="width:16.7%">数量</li>
+            <li style="width:16.7%">单价</li>
+            <li style="width:16%">小计</li>
+        </ul>
+        </div>
+        <div class="qrdd-dp-box table qrdd-dp-box{{mlist.merchants_id}}" style="border-bottom:none;">
+        
+            <table cellpadding="0" cellspacing="0">
+            <tr style="background:#fff;border:1px solid #ebebeb;">
+                <td class="td2" style="width:250px"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}"><i><img ng-src="{{slist.goodsBean.goods_img}}" /></i></a></td>
+                <td class="td3"  style="width:350px"><a target="_blank" href="index.html#/shop?shopid={{slist.goods_id}}">笔记本电脑</a></td>
+                <td class="td4" style="width:135px">￥<span>20000{{slist.car_total_pc_price | number:2}}</span></td>
+                <td class="td5"  style="width:230px">ｘ2{{slist.goods_num}}</td>
+                <td class="td7 red" style="width:150px;padding:60px 15px;">￥300000{{slist.total_pc_price | number:2}}</td>
+            </tr>
+            <tr class="tie-tit">
+                <td>礼品签收：兑换产品由厂家直接发货，收到礼品强当面验货无误后再签收。</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="success-btn">
+       <button  ng-click="tjdd()" class="btn1">提交订单</button>
+       <button  ng-click="tjdd()" class="btn2">返回首页</button>
+    </div>
+     
+  </div>
+</div>
+
+
+
+

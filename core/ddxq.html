@@ -1,0 +1,147 @@
+<div class="mainbox bg-f5 clearfix pad-b70 pad-t40">
+  <div class="box">
+    <div class="main-leftbox nav2">
+      <ul>
+        <li class="act1">订单中心</li>
+        <li class="act"><a href="#wddd">我的订单</a></li>
+        <li><a href="#tkdd">退款订单</a></li>
+        <li><a href="#pjdd">评价晒单</a></li>
+        <li class="act1">我的收藏</li>
+        <li><a href="#spsc">商品收藏</a></li>
+        <li><a href="#dpsc">店铺收藏</a></li>
+        <li class="act1">资产中心</li>
+        <!--<li><a href="#wdqb">我的钱包</a></li>-->
+        <li><a href="#xyed">信用额度</a></li>
+        <li><a href="#wdjf">我的积分</a></li>
+        <li><a href="#yhq">优惠中心</a></li>
+        <li><a href="#yhk">银行卡</a></li>
+      </ul>
+    </div>
+    <div class="main-rightbox ddxq-box wdddbox" style="background:none;padding:0;">
+      <div class="order-tie">订单详情</div>
+      <div class="ddxq-ddxx bg-fff clearfix">
+        <div class="d-ddxx-left">
+
+          <div class="receiver-tie">收货人信息</div>
+          <div  class="receiver-info">
+            <ul>
+              <li class="d-d-l-1of"><label>收货人姓名：</label>{{ddxq.name}}</li>
+              <li class="d-d-l-2of" ng-if="ddxq.order_state!='wait_pay'"><label>支付方式：</label><span ng-if="ddxq.pay_way=='alipay_pc_direct'">支付宝支付</span><span ng-if="ddxq.pay_way=='balance'">余额支付</span>
+                <span ng-if="ddxq.pay_way=='trust'">信用支付</span><span ng-if="ddxq.pay_way=='china_pay'">银联支付</span><span ng-if="ddxq.pay_way=='wx_pub_qr'">微信支付</span>
+              </li>
+              <li class="d-d-l-4of">
+                <label>发票类型：</label>
+                <span class="red" ng-if="ddxq.invoice_type=='no'">不开发票</span>
+                <span class="red" ng-if="ddxq.invoice_type=='paper'">纸质发票</span>
+                <span class="red" ng-if="ddxq.invoice_type=='increment'">增值税发票</span>
+              </li>
+              <li class="d-d-l-3of"><label>买家留言：</label>
+                <textarea style="font-size:12px;resize:none;outline:none;height:70px;width:75%;background:#F8F8F8;border:#D7D7D7;color:#666;padding:5px;">{{ddxq.remark==''?'':ddxq.remark}}</textarea>
+              </li>
+            </ul>
+          </div>
+          <div class="order-info">
+            <ul>
+              <li class="d-d-l-1of">订单编号：<span>{{ddxq.order_no}}</span></li>
+              <li class="d-d-l-2of">创建时间：<span>{{ddxq.create_time | limitTo:19}}</span></li>
+              <li class="d-d-l-3of">商家：<span>{{ddxq.merchants_name}}</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="d-ddxx-right">
+          <div  class="order-state">
+            <div>订单状态</div>
+            <ul style="margin-top:50px;">
+              <li class="d-d-r-1of" style="height:30px;line-height:30px;font-size:14px;color:#378DE5"><span style="font-size:14px;color:#378DE5">{{ddxq.order_state_show}}</span></li>
+              <li class="d-d-r-2of"  ng-if="ddxq.order_state=='wait_pay'"><button style="font-size:12px;" ng-click="fukuan(ddxq.order_id,ddxq.order_total_price)">立即付款</button></li>
+              <li class="d-d-r-2of"  ng-if="ddxq.order_state=='wait_send'"><a target="_blank" href="http://kefu.easemob.com/webim/im.html?tenantId={{ddxq.merchantsBean.custom_id}}"><button style="font-size:12px;">联系客服</button></a></li>
+              <!--<li class="d-d-r-2of"  ng-if="ddxq.order_state=='wait_receive'"><button ng-click="qrshop(ddxq.order_id)" style="font-size:12px;">确认收货</button></li>-->
+              <li class="d-d-r-2of"  ng-if="ddxq.order_state=='wait_assessment'"><a href="#/pingjia?oid={{ddxq.order_id}}" style="font-size:12px;"><button>评价晒单</button></a></li>
+              <li class="d-d-r-2of"  ng-if="ddxq.order_state=='end'"><button style="font-size:12px;">交易完成</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ddlist-box ddxq-spxx bg-fff" style="padding:0px 30px 30px 30px;">
+        <div class="product-info">产品信息</div>
+        <div class="ddlist-nav">
+          <ul>
+            <li>商品</li>
+            <li>单价</li>
+            <li>数量</li>
+            <li>小计</li>
+          </ul>
+        </div>
+        <div class="ddlist" ng-if="ddxq.orderParcelBeans!=''" ng-repeat="parcelist in ddxq.orderParcelBeans">
+          <div class="tit" style="position:relative;">
+            <span style="float:left;margin-left:40px;color:#378DE5;">包裹 {{$index+1}}</span>
+            <span style="float:left;margin-left:60px;">{{parcelist.logistics_name}}:{{parcelist.logistics_no}}</span>
+            <span style="float:left;display:block;width:250px;height:100%;overflow:hidden;margin-left:60px;">
+                <ul>
+                  <li ng-class="{act:$index==0}" ng-repeat="wl in parcelist.logisticsDetailBeans" style="color:#378DE5">{{wl.logistics_time | limitTo : 19}}&nbsp;{{wl.logistics_context}}</li>
+                </ul>
+              </span>
+            <span style="margin-left:0px;color:#378DE5;">...</span>
+            <span wltips style="margin-left:0px;cursor:pointer;">查看更多</span>
+            <div class="tips-box tipsbox" wltipshover hidden style="left:42%;width:400px;">
+              <p class="tit">{{parcelist.logistics_name?parcelist.logistics_name:'物流公司'}}：{{parcelist.logistics_no}}</p>
+              <ul>
+                <li ng-class="{act:$index==0}" ng-repeat="wl in parcelist.logisticsDetailBeans">{{wl.logistics_time | limitTo : 19}}&nbsp;{{wl.logistics_context}}</li>
+                <li>以上为最新跟踪信息</li>
+              </ul>
+            </div>
+            <span style="float:right;margin-right:55px;color:#999999;" ng-if="parcelist.parcel_state=='wait_send'">代发货</span>
+            <span style="float:right;margin-right:55px;color:#378DE5;cursor:pointer;" ng-if="parcelist.parcel_state=='wait_receive'"
+              ng-click="qrshop(parcelist.order_parcel_id)">确认收货</span>
+            <span style="float:right;margin-right:55px;color:#999999;" ng-if="parcelist.parcel_state=='end'||parcelist.parcel_state=='wait_assessment'">已收货</span>
+          </div>
+          <div class="table">
+            <table cellspacing="0" cellpadding="0">
+              <tr ng-repeat="shop in parcelist.orderGoodsBeans">
+                <td class="td1">
+                  <div class="dd-l-list clearfix">
+                    <ul>
+                      <li class="img"><a target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}"><img ng-src="{{shop.goods_img==''?'images/zw1.png':shop.goods_img}}" /></a></li>
+                      <li class="txt" title="{{shop.goods_name}}"><a target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}">{{shop.goods_name}}</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td class="td2"><span style="text-align:center;">￥{{shop.goods_price}}</span></td>
+                <td class="td2"><span style="text-align:center;">ｘ{{shop.goods_num}}</span></td>
+                <td class="td2"><span style="text-align:center;">￥{{shop.goods_price*shop.goods_num | number :2}}</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="table" style="margin:10px 0px 30px 0px;" ng-if="ddxq.orderParcelBeans==''">
+            <table cellspacing="0" cellpadding="0">
+              <tr ng-repeat="shop in ddxq.orderGoodsBeans">
+                <td class="td1">
+                  <div class="dd-l-list clearfix">
+                    <ul>
+                      <li class="img"><a target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}"><img ng-src="{{shop.goods_img==''?'images/zw1.png':shop.goods_img}}" /></a></li>
+                      <li class="txt" title="{{shop.goods_name}}"><a target="_blank" href="index.html#/shop?shopid={{shop.goods_id}}">{{shop.goods_name}}</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td class="td2"><span style="text-align:center;">￥{{shop.goods_price}}</span></td>
+                <td class="td2"><span style="text-align:center;">ｘ{{shop.goods_num}}</span></td>
+                <td class="td2"><span style="text-align:center;">￥{{shop.goods_price*shop.goods_num | number :2}}</span></td>
+              </tr>
+            </table>
+        </div>
+        <div class="d-s-money" style="background:#F8F8F8">
+          <ul>
+            <li>共{{ddxq.orderGoodsBeans.length}}件商品：<span>￥{{ddxq.order_goods_price | number :2}}</span></li>
+            <li>运费：<span class="blue">￥{{ddxq.express_price?ddxq.express_price:0 | number :2}}</span></li>
+            <li>积分抵扣：<span>-￥{{ddxq.deduct_integral_price?ddxq.deduct_integral_price:0 | number :2}}</span></li>
+            <li>优惠券：<span>-￥{{ddxq.coupon_price?ddxq.coupon_price:0 | number :2}}</span></li>
+            <li>订单金额：<span class="red">￥{{ddxq.order_actual_price | number :2}}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--main-rightbox end-->
+  </div>
+</div>

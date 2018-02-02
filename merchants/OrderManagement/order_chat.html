@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chat_list.html</title>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link rel="stylesheet" href="../../common.css" type="text/css" />
+<link rel="stylesheet" href="order_chat.css" type="text/css" />
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/huanxin/sdk/strophe.js"></script>
+<script type="text/javascript" src="../../js/huanxin/sdk/easemob.im-1.1.js"></script>
+<script type="text/javascript"
+	src="../../js/huanxin/sdk/easemob.im-1.1.shim.js"></script>
+<script type="text/javascript" src="../../js/huanxin/easemob.im.config.js"></script>
+<script type="text/javascript" src="../../js/huanxin/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="../../js/huanxin/bootstrap.js"></script>
+<script type="text/javascript" src="../../common.js"></script>
+<script type="text/javascript" src="order_chat.js"></script>
+</head>
+
+<body style="height: 100%;background-color: #1F1F29">
+	<div
+		style="position: absolute;left: 10%;top: 5%;width: 80%;height: auto;">
+		<div id='chat'
+			style="width:80%; height: 540px;; background-color:#ffffff;border:none;margin-left: 5%;">
+			<div  style="height: 40px;background-color: #5D6978;line-height: 40px;">
+				<div style="float: right;height: 40px;">
+				 	<img id='head_path' style="margin-top:5px;;width: 30px;height: 30px;border-radius:30px;">
+				</div>
+				<div style="float: right;" >
+					<label id='nick_name' style="color: #ffffff">正在与聊天</label>
+				</div>
+			</div>
+			
+			<div id='chatList' style="height: 310px;overflow: auto;">
+			
+			</div>
+			
+			<div style="height: 30px;background-color: #efefef"></div>
+			
+			<div style="height: 120px;text-align: center;">
+				<textarea id='txtMsg' style="width:99%;height: 100%;padding: 0px;margin: 0px;"></textarea>
+			</div>
+			<div style="height: 40px;background-color: #efefef;">
+				<input type="button" value="发送" onclick="sendTxtMsg()"
+					style="width: auto;padding-left: 10px;padding-right: 10px;position: absolute;right: 160px;bottom: 5px;height: 30px;background-color: #5D6978;" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

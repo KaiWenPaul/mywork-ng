@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<meta http-equiv="keywords" content="enter,your,keywords,here" />
+<meta http-equiv="description"
+	content="A short description of this page." />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+
+<link rel="stylesheet" href="../../common.css" type="text/css"></link>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../../common.js"></script>
+<script type="text/javascript" src="about_our_management.js"></script>
+</head>
+<body>
+	<div id='cityDiv'
+		style="overflow: visible; background-color: #ffffff; left: 35%; width: 30%; height: auto; top: 50px; position: absolute;">
+		<div class="allDiv">
+			<label class='leftLabel'>联系电话:</label>
+			<div class='rightDiv'>
+				<input id="company_mobile" type='text' class='rightEditor'></input>
+			</div>
+		</div>
+		<div class="allDiv">
+			<label class='leftLabel'>联系QQ:</label>
+			<div class='rightDiv'>
+				<input id="company_qq" type='text' class='rightEditor'></input>
+			</div>
+		</div>
+		<div class="allDiv">
+			<label class='leftLabel'>微信号:</label>
+			<div class='rightDiv'>
+				<input id="company_wx" type='text' class='rightEditor'></input>
+			</div>
+		</div>
+		<div class="allDiv">
+			<label class='leftLabel'>邮箱:</label>
+			<div class='rightDiv'>
+				<input id="company_email" type='text' class='rightEditor'></input>
+			</div>
+		</div>
+		<div class="allDiv">
+			<label class='leftLabel'>详细地址:</label>
+			<div class='rightDiv'>
+				<input id="company_address" type='text' class='rightEditor'></input>
+			</div>
+		</div>
+		<input id='updateButton' onclick="updateCompany()" type='button'
+			value="保存" class='tipButton' style='height:50px;color: #ffffff;font-size: 20px;'/>
+	</div>
+</body>
+</html>

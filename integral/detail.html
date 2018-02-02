@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="src/owl.carousel.css">
+<script src="src/owl.carousel.min.js"></script>
+<!--弹出框-->
+<div class="tck gogwc" hidden>
+  <i></i>
+  <div class="jrgwc-box">
+    <p>商品已加入购物车</p>
+    <a href="javascript:void(0)" ng-click="jxgg()">继续逛逛</a><a href="gwc.html#/" class="act">去结算</a>
+  </div>
+</div>
+
+<!--主体内容-->
+<div class="mainbox clearfix" style="border-top:2px solid #F6A42D;margin-top:40px;">
+ <div style="width:1200px;margin:0 auto;">
+  <!--面包屑-->
+    <div class="mbx-navbox" style="background:#fff;">
+        <div class="mbx-nav">
+        <div class="mbx-nav-l">
+            <span>您所在的位置：</span>
+            <a href="index.html#/">首页</a>
+            <a href="integral.html#/">积分商城</a>
+            <a href="">{{shopdetails.goods_name}}</a>
+        </div>
+        </div>
+    </div>
+ 
+<!--商品详情-->
+    <div style="width:950px;float:left">
+        <div class="spxq-box mar-b80 clearfix" style="clear:both;border:1px solid #f7f7f7;height:473px;">
+            <!--展示图片-->
+            <div class="spxq-imgbox">
+                <div class="spxq-img-big" style="width:300px;height:300px;padding:0px;margin-left:30px;margin-top:30px;" ng-if="shopdetails.skuBeans==''"><i style="width:300px;height:300px;line-height:300px;"><img ng-src="{{shopdetails.goods_img}}"/></i></div>
+                <div class="spxq-img-list"  ng-if="shopdetails.skuBeans==''">
+                    <ul id="spxqimg" class="owl-carousel">
+                    <li class="item" style="border:1px solid #ebebeb;" ng-repeat="shopimg in imgBeans" repeat-finish2="owlCarousel()" shopimg><i><img ng-src="{{shopimg.img_url}}" ng-click="" /></i></li>
+                    <!--<li class="item" style="border:1px solid red;" ng-repeat="shopimg in imgList" repeat-finish2="owlCarousel()" shopimg><i><img ng-src="{{shopimg.img_url}}" ng-click="" /></i></li>-->
+                    </ul>
+                </div>
+                <div class="spxq-img-big" style="width:300px;height:300px;padding:0px;margin-left:30px;margin-top:30px;" ng-if="shopdetails.skuBeans!=''"><i style="width:300px;height:300px;line-height:300px;"><img ng-src="{{imglist[0].img_url}}"/></i></div>
+                <div class="spxq-img-list"  ng-if="shopdetails.skuBeans!=''">
+                    <ul id="spxqimg" class="owl-carousel">
+                    <li class="item" style="border:1px solid #ebebeb;" ng-repeat="shopimg in imglist" repeat-finish2="owlCarousel()" shopimg><i><img ng-src="{{shopimg.img_url}}" ng-click="" /></i></li>
+                    <!--<li class="item" style="border:1px solid red;" ng-repeat="shopimg in imgList" repeat-finish2="owlCarousel()" shopimg><i><img ng-src="{{shopimg.img_url}}" ng-click="" /></i></li>-->
+                    </ul>
+                </div>
+            </div>
+            <!--商品介绍-->
+            <div class="spxq-text" style="width:498px;">
+                <div class="tit" style="font-size:20px;color:#333333;background:#fff;margin-top:40px;margin-bottom:20px;">{{shopdetails.goods_name}}</div>
+                <div class="detaile" style="margin-bottom:0px;background:#fff;padding:15px 15px 15px 0px;">
+                    <ul class="ull">
+                        <li class="s-d-2of4" style="background:#fcfcfc;height:68px;line-height:68px;padding-left:10px;color:#333"><label>积分：</label><span style="color:#FF3041;font-size:24px;">{{shopdetails.integral_num}}</span> </li>
+                        <li class="s-d-1of4" style="margin-bottom:0px;margin-top:16px;padding-left:10px;color:#333" ng-if="shopdetails.serviceBeans!=''"><label>服务：</label><span  style="margin-right:5px;" ng-repeat="service in shopdetails.serviceBeans">{{service.service_name}}</span></li>
+                    </ul>
+                </div>
+                <div class="other">
+                    <ul>
+                    <!--<li class="s-o-3of5 clearfix" style="color:#333;"><label style="margin-left:10px;color:#333">规格：</label>
+                        <p><span ng-class="{act:spec.goodsParameterBeans.length==1}" ng-repeat="spec2 in spec.goodsParameterBeans" price="{{spec2.parameter_pc_price}}"
+                            originprice="{{spec2.parameter_origin_price}}" val="{{spec2.parameter_id}}" ng-click="selgg()" tab>{{spec2.parameter_name}}</span></p>
+                    </li>-->
+                    <li class="s-o-3of5 clearfix params" ng-repeat="spec in shopdetails.paramBeans">
+                        <div style="width:70px;color:#333;margin-left:10px;float:left;height:25px;line-height:25px;">{{spec.parameter_key_name}}：</div>
+                        <!--ng-class="{act:spec.parameterValueBeans.length==1}"-->
+                        <p style="width:415px;min-height:45px;float:left;"><span  ng-repeat="spec2 in spec.parameterValueBeans"
+                             ng-click="selgg($event,spec.parameter_key_id,spec2.parameter_value_id)" tab>{{spec2.parameter_value_name}}</span>
+                        </p>
+                    </li>
+                    <li class="s-o-4of5" style="margin-top:0px;">
+                        <label style="margin-left:10px;color:#333">数量：</label>
+                        <p class="num mar-r60"><span class="jian" ng-click="count>1?count = count - 1:count=1">-</span><input ime-mode:disabled
+                            " onkeydown="if(event.keyCode==13)event.keyCode=9 " onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"
+                        type="number" ng-model="count" ng-blur="blurnum(count)"/><span ng-click="count = count + 1" class="jia">+</span></p>
+                    </li>
+                    <li class="s-o-4of5" style="padding-left:12px;">
+                    <button class="gwc" style="background:#FFE5D6;border:1px solid #F6802D;color:#F6802D;font-size:20px;width:180px;height:50px;line-height:50px;cursor:pointer;" ng-click="exchange(count)" title="{{shopdetails.is_supply==0?'无货':''}}"
+                    ng-class="{act:shopdetails.is_supply==0}">立即兑换</button>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--spxq end-->
+        <div class="clearfix" style="border:1px solid #f5f5f5;margin-bottom:30px;">
+            <div class="main-rightbox" style="width:950px;float:left;">
+                <div class="shop-details">
+                    <div class="tit" style="background:#fcfcfc;border-right:1px solid #f5f5f5;border-bottom:none;height:50px;line-height:50px;">
+                     <span style="height:50px;line-height:50px;color:#F6802D;font-size:18px;">商品详情</span>
+                    </div>
+                    <div class="s-d-xq sd" style="overflow:hidden;padding:0;">
+                        <iframe class="scroll-bar" style="width:948px;" src="{{shopdetails.goods_url}}" frameborder="0" scrolling="no" id="external-frame" onload="setIframeHeight(this)"></iframe>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    <!--同价推荐-->
+    <div class="parity">
+        <div class="parity_tit">同价位</div>
+        <div  class="con-list" ng-repeat="list in rightLists" style="position:relative">
+             <a style="width:230px;height:330px;position:absolute;top:0px;left:0px;cursor:pointer;padding:25px;"  href="integral.html#/detail?goodsid={{list.goods_id}}">
+             <ul style="display:block;">
+               <li class="jifen-list1-li0"><img ng-src="{{list.goods_img}}" alt="" style="max-width:100%;max-height:100%;vertical-align: middle;"></li>
+               <li class="jifen-list1-li1" title="{{list.goods_name}}" style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{list.goods_name}}</li>
+               <li class="jifen-list1-li2"><img src="images/ji.png" alt="" style="width:14px;height:14px;position:relative;top:2px;margin-right:8px;"><span>{{list.integral_num}}</span></li>
+             </ul>
+             </a>
+        </div>
+    </div>
+
+ </div>
+</div>
+<script>
+  window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+  function setIframeHeight(iframe) {
+    if (iframe) {
+    var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+    if (iframeWin.document.body) {
+    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+    }
+    }
+    };
+
+  window.onload = function () {
+    setIframeHeight(document.getElementById('external-frame'));
+    };
+</script>

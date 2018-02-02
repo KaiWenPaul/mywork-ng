@@ -1,0 +1,36 @@
+<!--主体内容-->
+<div class="clearfix">
+  <div class="con_box lottery" style="width:960px;background:url(./images/activity/lottery/lottery_bg.png);height:548px;">
+    <div class="lottery_top"style="background:url(./images/activity/lottery/lottery_01.png);"></div>
+    <div class="lottery_mid">
+        <p>一大波红包正在来袭...</p>
+        <div ng-click="tckshow()">点击刮奖</div>
+    </div>
+    <div class="lottery_main">
+        <ul>
+           <li>刮奖攻略</li>
+           <li>1.活动时间：2017年11月1日-11月30日。</li>
+           <li>2.活动期间，成功购买沃鎏波洱平台商品满100元（不含运费）的用户，可获得一次刮奖机会。</li>
+           <li>3.刮奖机会将保留到11月30日24时，逾期未刮奖将视为您主动放弃刮奖机会。</li>
+           <li>4.刮中奖金（奖品）并完成订单交易后，将会有工作人员和您联系；</li>
+           <li>5.如果您在中奖后取消订单或退货，则中奖无效。</li>
+        </ul>
+        <p style="margin-top:5px;">次活动最终解释权归上海沃鎏波洱电子商务有限公司有</p>
+        <p>活动咨询热线： 400-021-6808</p>
+    </div>
+  </div>
+</div>
+<div class="tck sign" ng-if="tcksign==1">
+  <i ng-click="tckhide()"></i>
+  <div class="sign-box lottery_tip" style="width:353px;height:502px;top:35%;left:55%;background:url(./images/activity/lottery/lottery_tip.png)">
+        <div class="tip_box1">
+            <div class="lottery_money"><span style="color:#FF6315" class="money">20.08</span><span style="color:#FF6315;font-size:16px;">元</span></div>
+            <div class="lottery_text">现金奖励</div>
+        </div>
+       <div class="tip_box2">
+         <div style="background:url(./images/activity/lottery/lottery_btn01.png);" class="cha_btn"></div>
+         <div style="background:url(./images/activity/lottery/lottery_btn02.png);" class="back_btn"></div>
+     </div>
+  </div>
+</div>
+
